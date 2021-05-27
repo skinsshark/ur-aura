@@ -1,0 +1,17 @@
+.camera-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+video {
+  object-fit: cover;
+  border-radius: 100%;
+  opacity: 0.9;
+  height: 70vh;
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg);
+  -moz-transform:rotateY(180deg);
+}
