@@ -29,7 +29,7 @@ function useUserMedia(requestedMedia) {
 function Camera() {
   const OPTIONS = {
     audio: false,
-    video: { facingMode: "environment" },
+    video: { facingMode: "user" },
   };
 
   const videoRef = useRef();
