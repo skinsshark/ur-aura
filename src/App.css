@@ -10,3 +10,9 @@ header {
   display: flex;
   justify-content: center;
 }
+
+button {
+  align-self: flex-end;
+  bottom: 50vh;
+  position: absolute;
+}
