@@ -17,9 +17,21 @@ body {
 h1 {
   font-family: 'liquido';
   font-size: 35vw;
-  color: #FF6BF0;
-  line-height: 0;
-  margin-top: 20vh;
+  margin-top: 0;
+  background-image: repeating-radial-gradient(
+    closest-side, violet, indigo, #2858FF, #4BDF33, #F9F146, orange, #FF6BF0, violet
+  );
+  background-size: 1000% 1000%;
+  -webkit-background-clip: text;
+  padding: 6px;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 45s ease-in-out infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 25% }
+  100% { background-position: 0% 50% }
 }
 
 
