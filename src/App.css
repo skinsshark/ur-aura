@@ -16,3 +16,15 @@ button {
   bottom: 50vh;
   position: absolute;
 }
+
+/* footer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100vw;
+  text-align: center;
+  border: 1px solid red;
+  text-transform: uppercase;
+  transform: rotate(90deg);
+  transform-origin: center;
+} */

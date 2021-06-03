@@ -11,6 +11,7 @@ function App() {
         <Camera />
         : <button onClick={() => setShowCamera(true)}>open camera</button>
       }
+      {/*<footer>Your energy, colorized</footer>*/}
     </div>
   );
 }

@@ -23,7 +23,7 @@ h1 {
   );
   background-size: 1000% 1000%;
   -webkit-background-clip: text;
-  padding: 6px;
+  padding: 0 10vw;
   -webkit-text-fill-color: transparent;
   animation: rainbow 45s ease-in-out infinite;
 }

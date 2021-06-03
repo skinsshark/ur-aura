@@ -1,0 +1,14 @@
+{
+  "description": "Your energy, colorized",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "./favicon.ico",
+      "sizes": "60x60",
+      "type": "image/png"
+    }
+  ],
+  "name": "ur-aura",
+  "short_name": "ur aura",
+  "start_url": "./index.html"
+}
