@@ -1,0 +1,13 @@
+.diagram-wrapper {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.diagram-wrapper p {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  text-wrap: nowrap;
+}

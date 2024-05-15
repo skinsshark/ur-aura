@@ -18,20 +18,24 @@ body {
   height: 100vh;
 }
 
-h1, p, button {
+h1,
+p,
+button {
   font-family: serif;
   font-style: italic;
   color: #fff;
   margin: 0;
 }
 
-h1, header p {
+h1,
+header p {
   font-size: 1.6rem;
   font-weight: normal;
   padding-left: calc(var(--window-padding) + var(--header-padding));
   padding-right: calc(var(--window-padding) + var(--header-padding));
 }
 
-button {
+button,
+.diagram-wrapper p {
   font-size: 1.2rem;
 }

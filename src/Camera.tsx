@@ -2,10 +2,22 @@ import Webcam from 'react-webcam';
 import { useState, useEffect } from 'react';
 import { useFaceDetection } from 'react-use-face-detection';
 import FaceDetection from '@mediapipe/face_detection';
-import './Camera.css';
 import { Camera as CameraUtils } from '@mediapipe/camera_utils';
 
-function Camera() {
+import './Camera.css';
+
+export type FacePositionType = {
+  width: number;
+  height: number;
+  xCenter: number;
+  yCenter: number;
+};
+
+function Camera({
+  setFacePosition,
+}: {
+  setFacePosition: (facePosition: FacePositionType) => void;
+}) {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -36,7 +48,16 @@ function Camera() {
       }),
   });
 
-  const you = boundingBox?.[0];
+  useEffect(() => {
+    if (!boundingBox[0]) return;
+
+    setFacePosition({
+      width: boundingBox[0].width * 100,
+      height: boundingBox[0].height * 100,
+      xCenter: boundingBox[0].xCenter * 100,
+      yCenter: boundingBox[0].yCenter * 100,
+    });
+  }, [boundingBox, setFacePosition]);
 
   return (
     <div
@@ -46,17 +67,17 @@ function Camera() {
         position: 'relative',
       }}
     >
-      {you && (
+      {/* {facePosition && (
         <div
           className="bounding-box"
           style={{
-            top: `${you.yCenter * 100}%`,
-            left: `${you.xCenter * 100}%`,
-            width: `${you.width * 100}%`,
-            height: `${you.height * 100}%`,
+            top: `${facePosition.yCenter * 100}%`,
+            left: `${facePosition.xCenter * 100}%`,
+            width: `${facePosition.width * 100}%`,
+            height: `${facePosition.height * 100}%`,
           }}
         />
-      )}
+      )} */}
 
       <Webcam
         ref={webcamRef}

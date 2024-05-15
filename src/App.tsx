@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
-import Camera from './Camera';
+import { useState } from 'react';
+import Camera, { FacePositionType } from './Camera';
+import Diagram from './Diagram';
+
 import './App.css';
 
 function App() {
-  const [showCamera, setShowCamera] = useState(false);
+  const [showCamera, setShowCamera] = useState<boolean>(false);
+  const [facePosition, setFacePosition] = useState<FacePositionType | null>(
+    null
+  );
 
   return (
     <div className="page-wrapper">
@@ -15,9 +20,11 @@ function App() {
         </nav>
       </header>
 
+      {facePosition !== null && <Diagram facePosition={facePosition} />}
+
       <div className="camera-wrapper">
         {showCamera ? (
-          <Camera />
+          <Camera setFacePosition={setFacePosition} />
         ) : (
           <button onClick={() => setShowCamera(true)}>open camera</button>
         )}
