@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Camera from './Camera';
 import './App.css';
 
 function App() {
+  const [showCamera, setShowCamera] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="page-wrapper">
+      <header>
+        <div className="lil-border" />
+        <nav>
+          <h1>ur aura</h1>
+          <p>your energy, colorized</p>
+        </nav>
       </header>
+
+      <div className="camera-wrapper">
+        {showCamera ? (
+          <Camera />
+        ) : (
+          <button onClick={() => setShowCamera(true)}>open camera</button>
+        )}
+      </div>
     </div>
   );
 }
