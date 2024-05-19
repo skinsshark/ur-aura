@@ -20,8 +20,6 @@ function App() {
         </nav>
       </header>
 
-      {facePosition !== null && <Aura facePosition={facePosition} />}
-
       <div className="camera-wrapper">
         {showCamera ? (
           <Camera
@@ -32,6 +30,8 @@ function App() {
           <button onClick={() => setShowCamera(true)}>open camera</button>
         )}
       </div>
+
+      {facePosition !== null && <Aura facePosition={facePosition} />}
     </div>
   );
 }

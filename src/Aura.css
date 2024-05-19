@@ -1,5 +1,13 @@
 svg {
   position: absolute;
-  transition: 0.05s ease-in all;
+  transition: 0.06s ease-in all;
   filter: blur(20px);
+  opacity: 0.8;
+  /* animation: gentle-pulse 6s ease-in-out infinite alternate; */
+}
+
+@keyframes gentle-pulse {
+  from {
+    opacity: 0.8;
+  }
 }
