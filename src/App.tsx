@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import Aura from './Aura';
 import Camera, { FacePositionType } from './Camera';
-import Diagram from './Diagram';
 
 import './App.css';
 
@@ -15,16 +15,19 @@ function App() {
       <header>
         <div className="lil-border" />
         <nav>
-          <h1>ur aura</h1>
+          <h1>UR–AURA</h1>
           <p>your energy, colorized</p>
         </nav>
       </header>
 
-      {facePosition !== null && <Diagram facePosition={facePosition} />}
+      {facePosition !== null && <Aura facePosition={facePosition} />}
 
       <div className="camera-wrapper">
         {showCamera ? (
-          <Camera setFacePosition={setFacePosition} />
+          <Camera
+            facePosition={facePosition}
+            setFacePosition={setFacePosition}
+          />
         ) : (
           <button onClick={() => setShowCamera(true)}>open camera</button>
         )}

@@ -7,22 +7,6 @@ header {
   pointer-events: none;
 }
 
-.lil-border {
-  border: 1px solid #fff;
-  position: absolute;
-  top: 16px;
-  bottom: 16px;
-  right: 16px;
-  left: 16px;
-  pointer-events: none;
-}
-
-@media only screen and (max-width: 767px) {
-  .lil-border {
-    border: none;
-  }
-}
-
 nav {
   position: absolute;
   width: 100vw;

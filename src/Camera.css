@@ -11,12 +11,13 @@ video {
   display: block;
   object-fit: cover;
   transform: rotateY(180deg);
-  -webkit-transform:rotateY(180deg);
-  -moz-transform:rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
   margin: 0;
   padding: 0;
 }
 
+/* for debugging */
 .bounding-box {
   z-index: 1;
   border: 1px solid #fff;

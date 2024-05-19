@@ -14,8 +14,10 @@ export type FacePositionType = {
 };
 
 function Camera({
+  facePosition, // for debugging
   setFacePosition,
 }: {
+  facePosition: FacePositionType | null;
   setFacePosition: (facePosition: FacePositionType) => void;
 }) {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
@@ -71,10 +73,10 @@ function Camera({
         <div
           className="bounding-box"
           style={{
-            top: `${facePosition.yCenter * 100}%`,
-            left: `${facePosition.xCenter * 100}%`,
-            width: `${facePosition.width * 100}%`,
-            height: `${facePosition.height * 100}%`,
+            top: `${facePosition.yCenter}%`,
+            left: `${facePosition.xCenter}%`,
+            width: `${facePosition.width}%`,
+            height: `${facePosition.height}%`,
           }}
         />
       )} */}
