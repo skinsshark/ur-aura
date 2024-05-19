@@ -18,7 +18,7 @@ function Camera({
   setFacePosition,
 }: {
   facePosition: FacePositionType | null;
-  setFacePosition: (facePosition: FacePositionType) => void;
+  setFacePosition: (facePosition: FacePositionType | null) => void;
 }) {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
@@ -53,12 +53,17 @@ function Camera({
   useEffect(() => {
     if (!boundingBox[0]) return;
 
-    setFacePosition({
-      width: boundingBox[0].width * 100,
-      height: boundingBox[0].height * 100,
-      xCenter: boundingBox[0].xCenter * 100,
-      yCenter: boundingBox[0].yCenter * 100,
-    });
+    // only detect face if large enough on screen
+    if (boundingBox[0].width > 0.1) {
+      setFacePosition({
+        width: boundingBox[0].width * 100,
+        height: boundingBox[0].height * 100,
+        xCenter: boundingBox[0].xCenter * 100,
+        yCenter: boundingBox[0].yCenter * 100,
+      });
+    } else {
+      setFacePosition(null);
+    }
   }, [boundingBox, setFacePosition]);
 
   return (

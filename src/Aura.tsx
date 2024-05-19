@@ -1,24 +1,32 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FacePositionType } from './Camera';
 
 import './Aura.css';
 
 function Aura({ facePosition }: { facePosition: FacePositionType }) {
+  const [auraScale, setAuraScale] = useState(1);
+
   const crownAuraRef = useRef<SVGSVGElement | null>(null);
-  const CROWN_AURA_HEIGHT = facePosition.height * 4;
-  const CROWN_AURA_WIDTH = facePosition.width * 3;
+  const CROWN_AURA_HEIGHT = facePosition.height * 4 * auraScale;
+  const CROWN_AURA_WIDTH = facePosition.width * 3 * auraScale;
 
   // might change to past/future auras
   const outerAuraRef = useRef<SVGSVGElement | null>(null);
-  const OUTER_AURA_HEIGHT = facePosition.height * 5;
-  const OUTER_AURA_WIDTH = facePosition.width * 4;
+  const OUTER_AURA_HEIGHT = facePosition.height * 5 * auraScale;
+  const OUTER_AURA_WIDTH = facePosition.width * 4 * auraScale;
 
   // might change to past/future auras
   const heartAuraRef = useRef<SVGSVGElement | null>(null);
-  const HEART_AURA_HEIGHT = facePosition.height * 2;
-  const HEART_AURA_WIDTH = facePosition.width * 3;
+  const HEART_AURA_HEIGHT = facePosition.height * 2 * auraScale;
+  const HEART_AURA_WIDTH = facePosition.width * 3 * auraScale;
 
   useEffect(() => {
+    if (facePosition.width < 20) {
+      setAuraScale(1.8);
+    } else {
+      setAuraScale(1);
+    }
+
     if (crownAuraRef.current) {
       crownAuraRef.current.setAttribute('width', `${CROWN_AURA_WIDTH}%`);
       crownAuraRef.current.setAttribute('height', `${CROWN_AURA_HEIGHT}%`);
