@@ -63,6 +63,10 @@ button {
     display: none;
   }
 
+  body {
+    height: auto;
+  }
+
   body::after {
     content: '⁂\Ago touch grass or smth';
     white-space: pre;
