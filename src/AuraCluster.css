@@ -1,7 +1,7 @@
 svg {
   position: absolute;
   transition: 0.06s ease-in all;
-  filter: blur(20px);
+  filter: blur(80px);
   opacity: 0.8;
   /* animation: gentle-pulse 6s ease-in-out infinite alternate; */
 }
