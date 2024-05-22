@@ -6,6 +6,10 @@
 
 `brew install hashicorp/tap/terraform`
 
+## Set Vercel API Token
+
+`export VERCEL_API_TOKEN=xxxx`
+
 ## Initialize TF project
 
 `cd infra && terraform init`
