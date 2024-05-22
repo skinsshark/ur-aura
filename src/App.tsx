@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Aura from './Aura';
+import AuraCluster from './AuraCluster';
 import Camera, { FacePositionType } from './Camera';
 
 import './App.css';
@@ -31,7 +31,7 @@ function App() {
         )}
       </div>
 
-      {facePosition !== null && <Aura facePosition={facePosition} />}
+      {facePosition !== null && <AuraCluster facePosition={facePosition} />}
     </div>
   );
 }
