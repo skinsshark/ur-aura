@@ -16,14 +16,14 @@ function AuraCluster({ facePosition }: { facePosition: FacePositionType }) {
   const CROWN_AURA_HEIGHT = facePosition.height * 4 * auraScale;
   const CROWN_AURA_WIDTH = facePosition.width * 2 * auraScale;
 
-  const OUTER_AURA_HEIGHT = facePosition.height * 5 * auraScale;
-  const OUTER_AURA_WIDTH = facePosition.width * 4 * auraScale;
+  const OUTER_AURA_HEIGHT = facePosition.height * 4 * auraScale;
+  const OUTER_AURA_WIDTH = facePosition.width * 3 * auraScale;
 
-  const PAST_AURA_HEIGHT = facePosition.height * 6 * auraScale;
-  const PAST_AURA_WIDTH = facePosition.width * auraScale;
+  const PAST_AURA_HEIGHT = facePosition.height * 2 * auraScale;
+  const PAST_AURA_WIDTH = facePosition.width * 2 * auraScale;
 
   const FUTURE_AURA_HEIGHT = facePosition.height * 2 * auraScale;
-  const FUTURE_AURA_WIDTH = (facePosition.width / 1.2) * auraScale;
+  const FUTURE_AURA_WIDTH = facePosition.width * 2 * auraScale;
 
   const HEART_AURA_HEIGHT = facePosition.height * 2 * auraScale;
   const HEART_AURA_WIDTH = facePosition.width * 3 * auraScale;
@@ -97,8 +97,9 @@ function AuraCluster({ facePosition }: { facePosition: FacePositionType }) {
         facePosition={facePosition}
         width={PAST_AURA_WIDTH}
         height={PAST_AURA_HEIGHT}
-        top={facePosition.yCenter - 80}
-        left={facePosition.xCenter - PAST_AURA_WIDTH - 8}
+        top={facePosition.yCenter}
+        left={facePosition.xCenter - PAST_AURA_WIDTH / 1.2}
+        fillOpacity={0.7}
       />
 
       <Aura
@@ -109,8 +110,8 @@ function AuraCluster({ facePosition }: { facePosition: FacePositionType }) {
         facePosition={facePosition}
         width={FUTURE_AURA_WIDTH}
         height={FUTURE_AURA_HEIGHT}
-        top={facePosition.yCenter - 60}
-        left={facePosition.xCenter + facePosition.width + 8}
+        top={facePosition.yCenter - 20}
+        left={facePosition.xCenter + facePosition.width - 4}
       />
     </>
   );

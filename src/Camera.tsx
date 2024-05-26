@@ -54,7 +54,7 @@ function Camera({
     if (!boundingBox[0]) return;
 
     // only detect face if large enough on screen
-    if (boundingBox[0].width > 0.1) {
+    if (boundingBox[0].width > 0.15) {
       setFacePosition({
         width: boundingBox[0].width * 100,
         height: boundingBox[0].height * 100,
