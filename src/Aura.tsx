@@ -11,7 +11,7 @@ function Aura({
   height,
   top,
   left,
-  fillOpacity = 0.8,
+  fillOpacity = 0.9,
 }: {
   d: string;
   fillColor: string;
