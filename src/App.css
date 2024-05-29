@@ -50,12 +50,6 @@ nav {
   opacity: 0;
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
 @-webkit-keyframes spin /* Safari and Chrome */ {
   from {
     -webkit-transform: rotate(0deg);
