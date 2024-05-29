@@ -23,13 +23,3 @@ video {
   border: 1px solid #fff;
   position: absolute;
 }
-
-.camera-wrapper button {
-  border: 1px solid #fff;
-  background: none;
-  outline: none;
-  padding: 12px 20px 16px;
-  margin: 0;
-  color: #fff;
-  cursor: pointer;
-}

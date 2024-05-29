@@ -37,7 +37,7 @@ function AuraCluster({ facePosition }: { facePosition: FacePositionType }) {
   }, [facePosition]);
 
   return (
-    <>
+    <div className="aura-cluster">
       <Aura
         svgWidth={979}
         svgHeight={407}
@@ -113,7 +113,7 @@ function AuraCluster({ facePosition }: { facePosition: FacePositionType }) {
         top={facePosition.yCenter - 20}
         left={facePosition.xCenter + facePosition.width - 4}
       />
-    </>
+    </div>
   );
 }
 
