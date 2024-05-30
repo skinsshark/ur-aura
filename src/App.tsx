@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AuraCluster from './AuraCluster';
 import Camera, { FacePositionType } from './Camera';
 
 import './App.css';
 
-const FADE_DURATION = 1000;
+const FADE_IN_DURATION = 4000;
+const FADE_OUT_DURATION = 1000;
 
 function App() {
   const [showCamera, setShowCamera] = useState<boolean>(false);
@@ -13,14 +14,26 @@ function App() {
   );
 
   const [fadeOutStartButton, setFadeOutStartButton] = useState<boolean>(false);
+  const [fadeInVideo, setFadeInVideo] = useState<boolean>(false);
 
   const handleButtonClick = () => {
     setFadeOutStartButton(true);
     setTimeout(() => {
       setShowCamera(true);
       setFadeOutStartButton(false);
-    }, FADE_DURATION);
+      setFadeInVideo(true);
+    }, FADE_OUT_DURATION);
   };
+
+  useEffect(() => {
+    if (showCamera) {
+      const timer = setTimeout(() => {
+        setFadeInVideo(false);
+      }, FADE_IN_DURATION);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showCamera]);
 
   return (
     <div className="page-wrapper">
@@ -34,14 +47,19 @@ function App() {
 
       <div className="camera-wrapper">
         {showCamera ? (
-          <Camera
-            facePosition={facePosition}
-            setFacePosition={setFacePosition}
-          />
+          <div
+            className={`camera-overlay ${fadeInVideo ? 'fade-in' : ''}`}
+            style={{ animationDuration: `${FADE_IN_DURATION}ms` }}
+          >
+            <Camera
+              facePosition={facePosition}
+              setFacePosition={setFacePosition}
+            />
+          </div>
         ) : (
           <div
             className={`start-camera ${fadeOutStartButton ? 'fade-out' : ''}`}
-            style={{ transitionDuration: `${FADE_DURATION}ms` }}
+            style={{ transitionDuration: `${FADE_OUT_DURATION}ms` }}
           >
             <svg
               width="922"

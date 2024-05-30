@@ -1,9 +1,9 @@
 .aura-cluster svg {
   position: absolute;
-  /* transition: 0.06s ease-in all; */
-  transition: 0.1s ease-in all;
+  /* transition: 0.1s ease-in all; */
   filter: blur(80px);
   opacity: 0.8;
+  z-index: 0;
   /* animation: gentle-pulse 6s ease-in-out infinite alternate; */
 }
 

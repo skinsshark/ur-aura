@@ -50,6 +50,16 @@ nav {
   opacity: 0;
 }
 
+.camera-overlay {
+  animation-name: fade-in;
+  animation-fill-mode: forwards;
+  z-index: 1;
+}
+
+.camera-overlay.fade-in {
+  opacity: 0;
+}
+
 @-webkit-keyframes spin /* Safari and Chrome */ {
   from {
     -webkit-transform: rotate(0deg);
@@ -77,5 +87,11 @@ nav {
     -webkit-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
   }
 }
