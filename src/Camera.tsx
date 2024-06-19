@@ -60,10 +60,11 @@ function Camera({
     //   height: 340,
     // });
 
+    const date = new Date();
     // tmp download image
     const link = document.createElement('a');
     link.href = imgSrc;
-    link.download = 'aura.jpg';
+    link.download = `${date.toISOString()}.jpg`;
     link.click();
 
     // todo: image needs to be cropped and
@@ -91,7 +92,7 @@ function Camera({
     <>
       <div
         style={{
-          width: windowSize.width,
+          width: windowSize.width / 2,
           height: windowSize.height,
           position: 'relative',
         }}
@@ -113,7 +114,7 @@ function Camera({
           forceScreenshotSourceSize
           screenshotFormat="image/jpeg"
           style={{
-            width: windowSize.width,
+            width: windowSize.width / 2,
             height: windowSize.height,
             position: 'absolute',
           }}

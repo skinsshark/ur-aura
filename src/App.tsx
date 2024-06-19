@@ -37,13 +37,21 @@ function App() {
 
   return (
     <div className="page-wrapper">
-      <header>
+      <div className="text-sidebar">
         <div className="lil-border" />
-        <nav>
+        <header>
           <h1>UR–AURA</h1>
           <p>your energy, colorized</p>
-        </nav>
-      </header>
+          <h4>
+            <a href="https://sharonzheng.com/" target="_blank" rel="noreferrer">
+              ⁂
+            </a>
+          </h4>
+        </header>
+        <footer>
+          <p>smth about guidebook and printed photo</p>
+        </footer>
+      </div>
 
       <div className="camera-wrapper">
         {showCamera ? (
@@ -62,8 +70,8 @@ function App() {
             style={{ transitionDuration: `${FADE_OUT_DURATION}ms` }}
           >
             <svg
-              width="922"
-              height="922"
+              width="680"
+              height="680"
               viewBox="0 0 922 922"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -82,9 +90,8 @@ function App() {
             <button onClick={handleButtonClick}>click to open camera</button>
           </div>
         )}
+        {facePosition !== null && <AuraCluster facePosition={facePosition} />}
       </div>
-
-      {facePosition !== null && <AuraCluster facePosition={facePosition} />}
     </div>
   );
 }

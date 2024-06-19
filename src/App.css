@@ -1,20 +1,20 @@
-.page-wrapper {
-  position: relative;
+.text-sidebar {
+  z-index: 1;
+  padding-left: var(--window-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 50vw;
+  background-color: #000;
+  border-right: 1px solid #fff;
 }
 
 header {
-  z-index: 1;
-  pointer-events: none;
-}
-
-nav {
-  position: absolute;
-  width: 100vw;
   display: flex;
-  justify-content: space-between;
-  padding-top: var(--header-padding);
-  padding-bottom: var(--header-padding);
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20%;
 }
 
 .start-camera {
@@ -53,7 +53,7 @@ nav {
 .camera-overlay {
   animation-name: fade-in;
   animation-fill-mode: forwards;
-  z-index: 1;
+  overflow: hidden;
 }
 
 .camera-overlay.fade-in {

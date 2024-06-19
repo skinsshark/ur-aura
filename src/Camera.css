@@ -1,12 +1,15 @@
 .camera-wrapper {
   display: flex;
+  width: 50vw;
   height: 100vh;
+  flex-grow: 1;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 video {
-  opacity: 50%;
+  opacity: 80%;
   background-color: #000;
   display: block;
   object-fit: cover;
