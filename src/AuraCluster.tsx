@@ -4,14 +4,14 @@ import Aura from './Aura';
 
 import './AuraCluster.css';
 
-function AuraCluster({ facePosition }: { facePosition: FacePositionType }) {
+const AuraCluster = ({
+  facePosition,
+  auraRefs,
+}: {
+  facePosition: FacePositionType;
+  auraRefs: RefObject<SVGSVGElement>[];
+}) => {
   const [auraScale, setAuraScale] = useState(1);
-  const auraRefs = useRef<RefObject<SVGSVGElement>[]>([
-    createRef<SVGSVGElement>(),
-    createRef<SVGSVGElement>(),
-    createRef<SVGSVGElement>(),
-    createRef<SVGSVGElement>(),
-  ]);
 
   const heartAuraColor = '#FFFFFF';
   const crownAuraColor = '#D258E6';
@@ -53,7 +53,7 @@ function AuraCluster({ facePosition }: { facePosition: FacePositionType }) {
           facePosition.xCenter - (HEART_AURA_WIDTH - facePosition.width) / 2
         }
         fillOpacity={0.6}
-        ref={auraRefs.current[0]}
+        ref={auraRefs[0]}
       />
 
       <Aura
@@ -66,7 +66,7 @@ function AuraCluster({ facePosition }: { facePosition: FacePositionType }) {
         height={FUTURE_AURA_HEIGHT}
         top={facePosition.yCenter}
         left={facePosition.xCenter + facePosition.width - 4}
-        ref={auraRefs.current[1]}
+        ref={auraRefs[1]}
       />
 
       <Aura
@@ -85,7 +85,7 @@ function AuraCluster({ facePosition }: { facePosition: FacePositionType }) {
         }
         facePosition={facePosition}
         fillColor={crownAuraColor}
-        ref={auraRefs.current[2]}
+        ref={auraRefs[2]}
       />
 
       <Aura
@@ -99,10 +99,10 @@ function AuraCluster({ facePosition }: { facePosition: FacePositionType }) {
         top={facePosition.yCenter - 10}
         left={facePosition.xCenter - PAST_AURA_WIDTH / 1.2}
         fillOpacity={0.7}
-        ref={auraRefs.current[3]}
+        ref={auraRefs[3]}
       />
     </div>
   );
-}
+};
 
 export default AuraCluster;

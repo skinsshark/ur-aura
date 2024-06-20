@@ -1,7 +1,7 @@
 import { forwardRef, useEffect } from 'react';
 import { FacePositionType } from './Camera';
 
-type SvgComponentProps = {
+type AuraProps = {
   svgWidth: number;
   svgHeight: number;
   d: string;
@@ -14,7 +14,7 @@ type SvgComponentProps = {
   fillOpacity?: number;
 };
 
-const Aura = forwardRef<SVGSVGElement, SvgComponentProps>(
+const Aura = forwardRef<SVGSVGElement, AuraProps>(
   (
     {
       d,
@@ -26,7 +26,7 @@ const Aura = forwardRef<SVGSVGElement, SvgComponentProps>(
       height,
       top,
       left,
-      fillOpacity = 0.9,
+      fillOpacity = 1,
     },
     ref
   ) => {

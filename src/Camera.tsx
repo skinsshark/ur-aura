@@ -1,5 +1,5 @@
 import Webcam from 'react-webcam';
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, RefObject } from 'react';
 import { useFaceDetection } from 'react-use-face-detection';
 import FaceDetection from '@mediapipe/face_detection';
 import { Camera as CameraUtils } from '@mediapipe/camera_utils';
@@ -21,6 +21,13 @@ function Camera() {
   const [facePosition, setFacePosition] = useState<FacePositionType | null>(
     null
   );
+
+  const auraRefs: RefObject<SVGSVGElement>[] = [
+    useRef<SVGSVGElement>(null),
+    useRef<SVGSVGElement>(null),
+    useRef<SVGSVGElement>(null),
+    useRef<SVGSVGElement>(null),
+  ];
 
   useEffect(() => {
     const handleResize = () => {
@@ -121,7 +128,9 @@ function Camera() {
       </div>
 
       {/* AURA */}
-      {facePosition !== null && <AuraCluster facePosition={facePosition} />}
+      {facePosition !== null && (
+        <AuraCluster facePosition={facePosition} auraRefs={auraRefs} />
+      )}
 
       <div className="shutter-button" onClick={captureImage}>
         <svg
