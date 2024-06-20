@@ -6,6 +6,7 @@ import { Camera as CameraUtils } from '@mediapipe/camera_utils';
 
 import './Camera.css';
 import { mergeRefs } from './mergeRefs';
+import AuraCluster from './AuraCluster';
 
 export type FacePositionType = {
   width: number;
@@ -14,15 +15,12 @@ export type FacePositionType = {
   yCenter: number;
 };
 
-function Camera({
-  facePosition, // for debugging
-  setFacePosition,
-}: {
-  facePosition: FacePositionType | null;
-  setFacePosition: (facePosition: FacePositionType | null) => void;
-}) {
+function Camera() {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const videoRef = useRef(null);
+  const [facePosition, setFacePosition] = useState<FacePositionType | null>(
+    null
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -98,20 +96,21 @@ function Camera({
         }}
       >
         {/* {facePosition && (
-        <div
-          className="bounding-box"
-          style={{
-            top: `${facePosition.yCenter}%`,
-            left: `${facePosition.xCenter}%`,
-            width: `${facePosition.width}%`,
-            height: `${facePosition.height}%`,
-          }}
-        />
-      )} */}
+          <div
+            className="bounding-box"
+            style={{
+              top: `${facePosition.yCenter}%`,
+              left: `${facePosition.xCenter}%`,
+              width: `${facePosition.width}%`,
+              height: `${facePosition.height}%`,
+            }}
+          />
+        )} */}
 
         <Webcam
           ref={mergeRefs([webcamRef, videoRef])}
           forceScreenshotSourceSize
+          mirrored
           screenshotFormat="image/jpeg"
           style={{
             width: windowSize.width / 2,
@@ -120,6 +119,9 @@ function Camera({
           }}
         />
       </div>
+
+      {/* AURA */}
+      {facePosition !== null && <AuraCluster facePosition={facePosition} />}
 
       <div className="shutter-button" onClick={captureImage}>
         <svg

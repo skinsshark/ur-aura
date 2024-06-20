@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import AuraCluster from './AuraCluster';
-import Camera, { FacePositionType } from './Camera';
+import Camera from './Camera';
 
 import './App.css';
 
@@ -9,9 +8,6 @@ const FADE_OUT_DURATION = 1000;
 
 function App() {
   const [showCamera, setShowCamera] = useState<boolean>(false);
-  const [facePosition, setFacePosition] = useState<FacePositionType | null>(
-    null
-  );
 
   const [fadeOutStartButton, setFadeOutStartButton] = useState<boolean>(false);
   const [fadeInVideo, setFadeInVideo] = useState<boolean>(false);
@@ -53,16 +49,13 @@ function App() {
         </footer>
       </div>
 
-      <div className="camera-wrapper">
+      <div className="camera-wrapper" id="print-preview">
         {showCamera ? (
           <div
             className={`camera-overlay ${fadeInVideo ? 'fade-in' : ''}`}
             style={{ animationDuration: `${FADE_IN_DURATION}ms` }}
           >
-            <Camera
-              facePosition={facePosition}
-              setFacePosition={setFacePosition}
-            />
+            <Camera />
           </div>
         ) : (
           <div
@@ -90,7 +83,6 @@ function App() {
             <button onClick={handleButtonClick}>click to open camera</button>
           </div>
         )}
-        {facePosition !== null && <AuraCluster facePosition={facePosition} />}
       </div>
     </div>
   );

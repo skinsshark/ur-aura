@@ -28,10 +28,10 @@ function Aura({
 
   useEffect(() => {
     if (auraRef.current) {
-      auraRef.current.setAttribute('width', `${width}%`);
-      auraRef.current.setAttribute('height', `${height}%`);
-      auraRef.current.style.top = `${top}%`;
-      auraRef.current.style.left = `${left}%`;
+      auraRef.current.setAttribute('width', `${Math.round(width)}%`);
+      auraRef.current.setAttribute('height', `${Math.round(height)}%`);
+      auraRef.current.style.top = `${Math.round(top - 10)}%`;
+      auraRef.current.style.left = `${Math.round(left)}%`;
     }
   }, [facePosition, height, auraRef, width, top, left]);
 

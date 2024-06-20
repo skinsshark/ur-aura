@@ -54,6 +54,7 @@ header {
   animation-name: fade-in;
   animation-fill-mode: forwards;
   overflow: hidden;
+  position: relative;
 }
 
 .camera-overlay.fade-in {
