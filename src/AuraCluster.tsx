@@ -1,4 +1,4 @@
-import { RefObject, createRef, useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 import { FacePositionType } from './Camera';
 import Aura from './Aura';
 
@@ -52,7 +52,7 @@ const AuraCluster = ({
         left={
           facePosition.xCenter - (HEART_AURA_WIDTH - facePosition.width) / 2
         }
-        fillOpacity={0.6}
+        // fillOpacity={0.6}
         ref={auraRefs[0]}
       />
 

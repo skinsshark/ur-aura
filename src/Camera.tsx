@@ -7,6 +7,7 @@ import { Camera as CameraUtils } from '@mediapipe/camera_utils';
 import './Camera.css';
 import { mergeRefs } from './mergeRefs';
 import AuraCluster from './AuraCluster';
+import html2canvas from 'html2canvas';
 
 export type FacePositionType = {
   width: number;
@@ -58,6 +59,21 @@ function Camera() {
   });
 
   const captureImage = useCallback(() => {
+    // const videoEl = document.getElementById('print-preview');
+    // if (!videoEl) return;
+    // html2canvas(videoEl).then((canvas) => {
+    //   // document.body.appendChild(canvas);
+    //   const canvasContext = canvas.getContext('2d');
+    //   canvasContext?.scale(-1, 1);
+
+    //   const date = new Date();
+    //   const dataURL = canvas.toDataURL('image/png');
+    //   const link = document.createElement('a');
+    //   link.href = dataURL;
+    //   link.download = `${date.toISOString()}.png`;
+    //   link.click();
+    // });
+
     // @ts-ignore
     const imgSrc = videoRef?.current?.getScreenshot();
     // const imgSrc = videoRef?.current?.getScreenshot({
@@ -72,10 +88,10 @@ function Camera() {
     link.download = `${date.toISOString()}.jpg`;
     link.click();
 
-    // todo: image needs to be cropped and
-    // needs to take a screenshot of the entire screen
-    // with the aura overlay, could swap out video for img??
-  }, [videoRef]);
+    // // todo: image needs to be cropped and
+    // // needs to take a screenshot of the entire screen
+    // // with the aura overlay, could swap out video for img??
+  }, []);
 
   useEffect(() => {
     if (!boundingBox[0]) return;
@@ -95,14 +111,15 @@ function Camera() {
 
   return (
     <>
-      <div
-        style={{
-          width: windowSize.width / 2,
-          height: windowSize.height,
-          position: 'relative',
-        }}
-      >
-        {/* {facePosition && (
+      <div id="print-preview">
+        <div
+          style={{
+            width: windowSize.width / 2,
+            height: windowSize.height,
+            position: 'relative',
+          }}
+        >
+          {/* {facePosition && (
           <div
             className="bounding-box"
             style={{
@@ -114,23 +131,24 @@ function Camera() {
           />
         )} */}
 
-        <Webcam
-          ref={mergeRefs([webcamRef, videoRef])}
-          forceScreenshotSourceSize
-          mirrored
-          screenshotFormat="image/jpeg"
-          style={{
-            width: windowSize.width / 2,
-            height: windowSize.height,
-            position: 'absolute',
-          }}
-        />
-      </div>
+          <Webcam
+            ref={mergeRefs([webcamRef, videoRef])}
+            forceScreenshotSourceSize
+            mirrored
+            screenshotFormat="image/jpeg"
+            style={{
+              width: windowSize.width / 2,
+              height: windowSize.height,
+              position: 'absolute',
+            }}
+          />
+        </div>
 
-      {/* AURA */}
-      {facePosition !== null && (
-        <AuraCluster facePosition={facePosition} auraRefs={auraRefs} />
-      )}
+        {/* AURA */}
+        {facePosition !== null && (
+          <AuraCluster facePosition={facePosition} auraRefs={auraRefs} />
+        )}
+      </div>
 
       <div className="shutter-button" onClick={captureImage}>
         <svg

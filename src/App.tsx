@@ -49,7 +49,7 @@ function App() {
         </footer>
       </div>
 
-      <div className="camera-wrapper" id="print-preview">
+      <div className="camera-wrapper">
         {showCamera ? (
           <div
             className={`camera-overlay ${fadeInVideo ? 'fade-in' : ''}`}
