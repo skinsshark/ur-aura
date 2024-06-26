@@ -1,0 +1,24 @@
+.shutter-button {
+    position: absolute;
+    cursor: pointer;
+    bottom: 0;
+    right: 0;
+    z-index: 99;
+  }
+  
+  .shutter-button svg {
+    animation-name: spin;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-fill-mode: backwards;
+    animation-play-state: paused;
+    animation-iteration-count: infinite;
+  }
+  
+  .shutter-button:active svg,
+  .shutter-button:focus svg,
+  .shutter-button:hover svg {
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+  }
+  
