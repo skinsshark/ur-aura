@@ -5,9 +5,7 @@ import FaceDetection from "@mediapipe/face_detection";
 import { Camera as CameraUtils } from "@mediapipe/camera_utils";
 
 import "./Camera.css";
-import { mergeRefs } from "./mergeRefs";
 import AuraCluster from "./AuraCluster";
-import html2canvas from "html2canvas";
 import ShutterButton from "./ShutterButton";
 
 export type FacePositionType = {
@@ -19,7 +17,6 @@ export type FacePositionType = {
 
 function Camera() {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-  const videoRef = useRef(null);
   const [facePosition, setFacePosition] = useState<FacePositionType | null>(
     null
   );
@@ -59,8 +56,6 @@ function Camera() {
       }),
   });
 
-  const captureImage = useCallback(() => {}, []);
-
   useEffect(() => {
     if (!boundingBox[0]) return;
 
@@ -77,6 +72,8 @@ function Camera() {
     }
   }, [boundingBox, setFacePosition]);
 
+  const captureImage = useCallback(() => {}, []);
+
   return (
     <>
       <div id="print-preview">
@@ -88,7 +85,7 @@ function Camera() {
           }}
         >
           <Webcam
-            ref={mergeRefs([webcamRef, videoRef])}
+            ref={webcamRef}
             forceScreenshotSourceSize
             mirrored
             screenshotFormat="image/jpeg"
