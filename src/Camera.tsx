@@ -7,6 +7,7 @@ import { Camera as CameraUtils } from "@mediapipe/camera_utils";
 import "./Camera.css";
 import AuraCluster from "./AuraCluster";
 import ShutterButton from "./ShutterButton";
+import AuraPhoto from "./AuraPhoto";
 
 export type FacePositionType = {
   width: number;
@@ -20,6 +21,8 @@ function Camera() {
   const [facePosition, setFacePosition] = useState<FacePositionType | null>(
     null
   );
+  const [isGeneratingPhoto, setIsGeneratingPhoto] = useState<boolean>(false);
+  const [webcamSnapshotImgSrc, setWebcamSnapshotImgSrc] = useState<string>("");
 
   const auraRefs: RefObject<SVGSVGElement>[] = [
     useRef<SVGSVGElement>(null),
@@ -27,19 +30,6 @@ function Camera() {
     useRef<SVGSVGElement>(null),
     useRef<SVGSVGElement>(null),
   ];
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const { webcamRef, boundingBox } = useFaceDetection({
     faceDetectionOptions: {
@@ -57,6 +47,19 @@ function Camera() {
   });
 
   useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     if (!boundingBox[0]) return;
 
     // only detect face if large enough on screen
@@ -72,38 +75,60 @@ function Camera() {
     }
   }, [boundingBox, setFacePosition]);
 
-  const captureImage = useCallback(() => {}, []);
+  const generatePhoto = useCallback(async () => {
+    if (isGeneratingPhoto) {
+      return;
+    } else {
+      setIsGeneratingPhoto(true);
+      // @ts-ignore
+      setWebcamSnapshotImgSrc(webcamRef?.current?.getScreenshot());
+    }
+  }, [setIsGeneratingPhoto]);
 
   return (
-    <>
-      <div id="print-preview">
-        <div
-          style={{
-            width: windowSize.width / 2,
-            height: windowSize.height,
-            position: "relative",
-          }}
-        >
-          <Webcam
-            ref={webcamRef}
-            forceScreenshotSourceSize
-            mirrored
-            screenshotFormat="image/jpeg"
+    <div className="layer-container">
+      <div className="webcam-layer">
+        <div id="print-preview">
+          <div
             style={{
               width: windowSize.width / 2,
               height: windowSize.height,
-              position: "absolute",
+              position: "relative",
             }}
-          />
+          >
+            <Webcam
+              ref={webcamRef}
+              forceScreenshotSourceSize
+              mirrored
+              screenshotFormat="image/jpeg"
+              style={{
+                width: windowSize.width / 2,
+                height: windowSize.height,
+                position: "absolute",
+              }}
+            />
+          </div>
+          {facePosition !== null && (
+            <AuraCluster facePosition={facePosition} auraRefs={auraRefs} />
+          )}
         </div>
-
-        {facePosition !== null && (
-          <AuraCluster facePosition={facePosition} auraRefs={auraRefs} />
-        )}
+        <ShutterButton onClick={generatePhoto} />
       </div>
 
-      <ShutterButton onClick={captureImage} />
-    </>
+      {facePosition && isGeneratingPhoto && webcamSnapshotImgSrc && (
+        <div className="photo-layer">
+          <AuraPhoto
+            width={windowSize.width / 2}
+            height={windowSize.height}
+            webcamSnapshotImgSrc={webcamSnapshotImgSrc}
+            facePosition={facePosition}
+            auraRefs={auraRefs}
+            isGeneratingPhoto={isGeneratingPhoto}
+            setIsGeneratingPhoto={setIsGeneratingPhoto}
+          />
+        </div>
+      )}
+    </div>
   );
 }
 
