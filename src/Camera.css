@@ -50,3 +50,9 @@ video {
   animation-fill-mode: forwards;
   animation-play-state: running;
 }
+
+#captured-webcam-photo {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
