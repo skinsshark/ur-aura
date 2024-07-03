@@ -1,6 +1,7 @@
 * {
   --window-padding: 16px;
   box-sizing: border-box;
+  font-family: 'SimSong', 'Times New Roman', serif;
 }
 
 body {
@@ -36,8 +37,7 @@ a,
 a:focus,
 a:active,
 button {
-  font-family: 'Times New Roman', serif;
-  font-style: italic;
+  /* font-style: italic; */
   color: #fff;
   margin: 0;
   font-weight: normal;
@@ -100,4 +100,11 @@ button {
     font-size: 1.6rem;
     font-style: italic;
   }
+}
+
+@font-face {
+  font-family: 'SimSong';
+  src: url('./fonts/SimSong.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }

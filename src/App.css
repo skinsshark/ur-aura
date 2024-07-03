@@ -40,6 +40,7 @@ header {
   width: 220px;
   height: 220px;
   border-radius: 100%;
+  padding: 60px;
   color: #fff;
   cursor: pointer;
 }

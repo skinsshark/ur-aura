@@ -36,7 +36,7 @@ function App() {
       <div className="text-sidebar">
         <div className="lil-border" />
         <header>
-          <h1>UR–AURA</h1>
+          <h1>UR-AURA</h1>
           <p>your energy, colorized</p>
           <h4>
             <a href="https://sharonzheng.com/" target="_blank" rel="noreferrer">
