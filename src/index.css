@@ -1,7 +1,18 @@
 * {
   --window-padding: 16px;
+  --mobile-window-x-padding: 12px;
   box-sizing: border-box;
   font-family: 'SimSong', 'Times New Roman', serif;
+}
+
+::selection {
+  background: #fff;
+  color: #000;
+}
+
+::-moz-selection {
+  background: #fff;
+  color: #000;
 }
 
 body {
@@ -70,10 +81,16 @@ footer p {
   font-size: 1.4rem;
 }
 
+p {
+  text-align: justify;
+}
+
+/* ⁂ */
 h4 {
   margin-top: 32px;
   font-size: 2.5rem;
   font-style: normal;
+  /* font-family: serif; */
 }
 
 button {
@@ -84,6 +101,12 @@ button {
 @media only screen and (max-width: 992px) {
   .page-wrapper {
     display: none;
+    flex-direction: column;
+  }
+
+  .lil-border {
+    right: var(--mobile-window-x-padding);
+    left: var(--mobile-window-x-padding);
   }
 
   body {
@@ -91,13 +114,12 @@ button {
   }
 
   body::after {
-    content: '⁂\Ago touch grass or smth';
+    content: 'go touch grass or smth\A\A⁂';
     white-space: pre;
     color: #fff;
     display: block;
-    padding: 40px;
+    padding: 48px 32px;
     font-size: 1.6rem;
-    font-style: italic;
   }
 }
 

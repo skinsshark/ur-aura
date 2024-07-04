@@ -19,7 +19,6 @@
   width: 28vh;
   height: 28vh;
   animation: loading-spin 44s linear infinite;
-  animation-delay: 0s;
   transition: opacity 2s ease-in-out;
   opacity: 0;
 }

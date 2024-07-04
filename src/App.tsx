@@ -75,12 +75,15 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
               >
-                ⁂
+                {/* ⋆⁂･ﾟ*⋆⁂･ﾟ* */}⋆⋆⋆
               </a>
             </h4>
           </header>
           <footer>
-            <p>smth about guidebook and printed photo</p>
+            <p>
+              Visit me IRL to purchase your aura photo and companion guidebook.
+              DM or email for private events/inquiries.
+            </p>
           </footer>
         </div>
 

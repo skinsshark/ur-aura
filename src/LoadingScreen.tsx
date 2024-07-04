@@ -4,13 +4,17 @@ import './LoadingScreen.css';
 const LoadingScreen = (isLoading: { isLoading: boolean }) => {
   const spinningTextRef = React.useRef<HTMLDivElement>(null);
   const loadingScreenRef = React.useRef<HTMLDivElement>(null);
-  const text = 'UR-AURA .......... Loading .................'; // Text to spin
+
+  // spinning text
+  const text = 'UR-AURA ⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆ Loading ⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆';
 
   useEffect(() => {
     // on load, fade in spinning loading text
-    if (spinningTextRef.current) {
-      spinningTextRef.current.style.opacity = '1';
-    }
+    const fadeInSpinningTextTimer = setTimeout(() => {
+      if (spinningTextRef.current) {
+        spinningTextRef.current.style.opacity = '1';
+      }
+    }, 250);
 
     // fade out spinning loading text
     const fadeOutSpinningTextTimer = setTimeout(() => {
@@ -29,6 +33,7 @@ const LoadingScreen = (isLoading: { isLoading: boolean }) => {
 
     return () => {
       clearTimeout(fadeOutSpinningTextTimer);
+      clearTimeout(fadeInSpinningTextTimer);
       clearTimeout(fadeOutLoadingScreenTimer);
     };
   });
