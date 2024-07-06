@@ -1,0 +1,36 @@
+.shutter-button-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+  /* make into var */
+  width: 75vh;
+  /* make border into var too tbh */
+  border-top: 1px solid #fff;
+  padding-bottom: var(--window-padding);
+  padding-right: var(--window-padding);
+  display: flex;
+
+  .shutter-button-icon {
+    width: 20%;
+    border-right: 1px solid #fff;
+  }
+
+  .shutter-button {
+    flex-grow: 1;
+    border-radius: 100%;
+    cursor: pointer;
+
+    /* reset button styles */
+    outline: none;
+    background: none;
+    box-shadow: none;
+    border: none;
+    transition: 0.1s ease-in all;
+
+    &.waiting-for-photo {
+      transition: 0.1s ease-in all;
+      border: 1px solid #fff;
+    }
+  }
+}

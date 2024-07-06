@@ -67,17 +67,9 @@ function App() {
       <div className="page-wrapper">
         <div className="text-sidebar">
           <header>
+            {/* ⋆⁂･ﾟ*⋆⁂･ﾟ* */}
             <h1>UR-AURA</h1>
             <p>your energy, colorized</p>
-            <h4>
-              <a
-                href="https://sharonzheng.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {/* ⋆⁂･ﾟ*⋆⁂･ﾟ* */}⋆⋆⋆
-              </a>
-            </h4>
           </header>
           <footer>
             <p>
@@ -93,7 +85,7 @@ function App() {
               className={`camera-overlay ${fadeInVideo ? 'fade-in' : ''}`}
               style={{ animationDuration: `${FADE_IN_DURATION}ms` }}
             >
-              <Camera />
+              <Camera fadeInVideo={fadeInVideo} />
             </div>
           ) : (
             <div
@@ -118,7 +110,7 @@ function App() {
                 />
               </svg>
 
-              <button onClick={handleButtonClick}>click to open camera</button>
+              <button onClick={handleButtonClick}>Click to Open Camera</button>
             </div>
           )}
         </div>
