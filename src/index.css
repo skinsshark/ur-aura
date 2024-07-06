@@ -91,20 +91,20 @@ footer p {
   text-align: left;
 }
 
-button:hover {
+button {
+  cursor: pointer;
+}
+
+button[disabled] {
+  cursor: default;
+}
+
+button:not([disabled]):hover {
   text-transform: uppercase;
 }
 
-/* ⁂ */
-h4 {
-  margin-top: 32px;
-  font-size: 2.5rem;
-  font-style: normal;
-  /* font-family: serif; */
-}
-
 button {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 /* ~mobile~ */

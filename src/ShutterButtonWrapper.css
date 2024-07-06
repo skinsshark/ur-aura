@@ -10,27 +10,48 @@
   padding-bottom: var(--window-padding);
   padding-right: var(--window-padding);
   display: flex;
+  /* useful only if want to spin icon on sibling hover */
+  flex-direction: row-reverse;
 
   .shutter-button-icon {
-    width: 20%;
+    width: 25%;
     border-right: 1px solid #fff;
+
+    > svg {
+      animation-name: spin;
+      animation-duration: 10s;
+      animation-timing-function: linear;
+      animation-fill-mode: backwards;
+      animation-play-state: paused;
+      animation-iteration-count: infinite;
+      transition: 1s ease-in-out all;
+    }
   }
 
   .shutter-button {
-    flex-grow: 1;
-    border-radius: 100%;
-    cursor: pointer;
-
     /* reset button styles */
     outline: none;
     background: none;
     box-shadow: none;
     border: none;
-    transition: 0.1s ease-in all;
 
-    &.waiting-for-photo {
-      transition: 0.1s ease-in all;
-      border: 1px solid #fff;
-    }
+    transition: 0.1s ease-in all;
+    border: 1px solid #fff;
+    flex-grow: 1;
+    border-radius: 100%;
+  }
+}
+
+.waiting-for-photo {
+  > .shutter-button {
+    transition: 0.1s ease-in all;
+    border: none;
+  }
+
+  /* spin icon when image is generating (should it also be on hover?) */
+  /* .shutter-button:hover + .shutter-button-icon { */
+  > .shutter-button-icon svg {
+    animation-fill-mode: forwards;
+    animation-play-state: running;
   }
 }
