@@ -87,9 +87,14 @@ function App() {
           </footer>
         </div>
 
-        <div className="right-side">
+        <div className="camera-wrapper">
           {showCamera ? (
-            <Camera fadeInVideo={fadeInVideo} />
+            <div
+              className={`camera-overlay ${fadeInVideo ? 'fade-in' : ''}`}
+              style={{ animationDuration: `${FADE_IN_DURATION}ms` }}
+            >
+              <Camera />
+            </div>
           ) : (
             <div
               className={`start-camera ${fadeOutStartButton ? 'fade-out' : ''}`}

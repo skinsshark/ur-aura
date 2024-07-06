@@ -48,17 +48,15 @@ header {
   opacity: 0;
 }
 
-.camera-wrapper {
+.camera-overlay {
   animation-name: fade-in;
   animation-fill-mode: forwards;
   overflow: hidden;
   position: relative;
-  display: flex;
-  flex-grow: 1;
+}
 
-  &.fade-in {
-    opacity: 0;
-  }
+.camera-overlay.fade-in {
+  opacity: 0;
 }
 
 @-webkit-keyframes spin /* Safari and Chrome */ {
@@ -99,7 +97,7 @@ header {
 
 @media only screen and (max-width: 992px) {
   .text-sidebar,
-  .right-side {
+  .camera-wrapper {
     width: 100%;
   }
 }
