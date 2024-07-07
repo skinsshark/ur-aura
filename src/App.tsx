@@ -69,7 +69,7 @@ function App() {
           <header>
             {/* ⋆⁂･ﾟ*⋆⁂･ﾟ* */}
             <h1>UR-AURA</h1>
-            <p>your energy, colorized</p>
+            <p>Your energy, colorized</p>
           </header>
           <footer>
             <p>
@@ -110,7 +110,7 @@ function App() {
                 />
               </svg>
 
-              <button onClick={handleButtonClick}>Click to Open Camera</button>
+              <button onClick={handleButtonClick}>Click to open camera</button>
             </div>
           )}
         </div>

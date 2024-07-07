@@ -11,7 +11,7 @@ const ExportControlsWrapper = ({
     <div className="button-wrapper export-controls-wrapper">
       <div className="export-controls">
         <div className="control-wrapper">
-          <button disabled>Print Photo (For Event Use Only)</button>
+          <button disabled>Print photo (for event use only)</button>
           <div className="button-icon">
             <svg
               viewBox="0 0 262 262"
@@ -21,13 +21,13 @@ const ExportControlsWrapper = ({
               <path
                 d="M136.253 123.665L136.32 124.992L137.644 125.086L220.845 131L137.644 136.914L136.32 137.008L136.253 138.335L131.5 232.305L126.747 138.335L126.68 137.008L125.356 136.914L42.155 131L125.356 125.086L126.68 124.992L126.747 123.665L131.5 29.6955L136.253 123.665Z"
                 stroke="#fff"
-                stroke-width="3"
+                strokeWidth="3"
               />
             </svg>
           </div>
         </div>
         <div className="control-wrapper">
-          <button onClick={onDownloadImage}>Save Image to Device</button>
+          <button onClick={onDownloadImage}>Save image to device</button>
           <div className="button-icon">
             <svg
               viewBox="0 0 167 169"
@@ -44,7 +44,7 @@ const ExportControlsWrapper = ({
         </div>
       </div>
       <button onClick={onRetakePhoto} className="retake-photo-button">
-        Retake Photo
+        Retake photo
       </button>
     </div>
   );
