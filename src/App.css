@@ -23,6 +23,18 @@ header {
   transition-timing-function: ease-in-out;
 }
 
+@media only screen and (max-width: 598px) {
+  .text-sidebar {
+    padding: 30px 6vw;
+    border-right: none;
+    border-bottom: 1px solid #fff;
+  }
+
+  .start-camera {
+    width: 90%;
+  }
+}
+
 .start-camera svg {
   position: relative;
   webkit-animation: spin 180s linear infinite;

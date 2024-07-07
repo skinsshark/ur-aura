@@ -1,6 +1,8 @@
 * {
   --window-padding: 16px;
-  --mobile-window-x-padding: 12px;
+  --mobile-window-padding: 12px;
+  --tablet-breakpoint: 1124px;
+  --mobile-breakpoint: 598px;
   box-sizing: border-box;
   font-family: 'SimSong', 'Times New Roman', serif;
 }
@@ -108,15 +110,17 @@ button {
 }
 
 /* ~mobile~ */
-@media only screen and (max-width: 1084px) {
+/* --tablet-breakpoint */
+@media only screen and (max-width: 1124px) {
   .page-wrapper {
     display: none;
-    flex-direction: column;
   }
 
   .lil-border {
-    right: var(--mobile-window-x-padding);
-    left: var(--mobile-window-x-padding);
+    top: var(--mobile-window-padding);
+    left: var(--mobile-window-padding);
+    right: var(--mobile-window-padding);
+    bottom: var(--mobile-window-padding);
   }
 
   body {
@@ -130,6 +134,23 @@ button {
     display: block;
     padding: 48px 32px;
     font-size: 1.6rem;
+  }
+}
+
+/* --mobile-breakdpoint */
+@media only screen and (max-width: 598px) {
+  html {
+    font-size: 10px;
+  }
+
+  .page-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .lil-border {
+    display: none;
   }
 }
 
