@@ -11,6 +11,7 @@ import { mergeRefs } from './mergeRefs';
 import AuraCluster from './AuraCluster';
 import ShutterButtonWrapper from './ShutterButtonWrapper';
 import useWindowSize from './useWindowSize';
+import ExportControlsWrapper from './ExportControlsWrapper';
 
 export type FacePositionType = {
   width: number;
@@ -164,38 +165,15 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
       {!isAuraReady && (
         <ShutterButtonWrapper
           onCaptureImage={onCaptureImage}
-          onDownloadImage={onDownloadImage}
-          setWebcamImage={setWebcamImage}
           isCapturingPhoto={isCapturingPhoto}
-          isAuraReady={isAuraReady}
         />
       )}
 
       {isAuraReady && (
-        <>
-          <button
-            onClick={onRetakePhoto}
-            style={{
-              position: 'absolute',
-              left: 0,
-              bottom: 'var(--window-padding)',
-              color: '#000',
-            }}
-          >
-            Reset
-          </button>
-          <button
-            onClick={onDownloadImage}
-            style={{
-              position: 'absolute',
-              left: 80,
-              bottom: 'var(--window-padding)',
-              color: '#000',
-            }}
-          >
-            Back 2 Temp Save Image Button
-          </button>
-        </>
+        <ExportControlsWrapper
+          onRetakePhoto={onRetakePhoto}
+          onDownloadImage={onDownloadImage}
+        />
       )}
     </div>
   );

@@ -29,12 +29,6 @@
   }
 
   .shutter-button {
-    /* reset button styles */
-    outline: none;
-    background: none;
-    box-shadow: none;
-    border: none;
-
     transition: 0.1s ease-in all;
     border: 1px solid #fff;
     flex-grow: 1;
@@ -48,10 +42,13 @@
     border: none;
   }
 
-  /* spin icon when image is generating (should it also be on hover?) */
-  /* .shutter-button:hover + .shutter-button-icon { */
   > .shutter-button-icon svg {
     animation-fill-mode: forwards;
     animation-play-state: running;
   }
+}
+
+.shutter-button:hover + .shutter-button-icon svg {
+  animation-fill-mode: forwards;
+  animation-play-state: running;
 }

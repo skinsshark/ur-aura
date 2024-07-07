@@ -2,15 +2,9 @@ import './ShutterButtonWrapper.css';
 
 const ShutterButtonWrapper = ({
   onCaptureImage,
-  onDownloadImage,
-  setWebcamImage,
-  isAuraReady,
   isCapturingPhoto,
 }: {
   onCaptureImage: () => void;
-  onDownloadImage: () => void;
-  setWebcamImage: (webcamImage: null) => void;
-  isAuraReady: boolean;
   isCapturingPhoto: boolean;
 }) => {
   return (
@@ -24,7 +18,7 @@ const ShutterButtonWrapper = ({
         className={`shutter-button`}
         onClick={onCaptureImage}
       >
-        {isCapturingPhoto ? 'Generating Aura.......' : 'Capture Aura'}
+        {isCapturingPhoto ? 'Generating Aura.......' : 'Click to Capture Aura'}
       </button>
       <div className="shutter-button-icon">
         <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">

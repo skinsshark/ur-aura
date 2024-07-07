@@ -93,6 +93,12 @@ footer p {
 
 button {
   cursor: pointer;
+
+  /* reset button styles */
+  outline: none;
+  background: none;
+  box-shadow: none;
+  border: none;
 }
 
 button[disabled] {
