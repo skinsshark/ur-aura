@@ -40,18 +40,25 @@
     flex-grow: 1;
     border-radius: 100%;
   }
-}
 
-.waiting-for-photo {
-  > .shutter-button {
-    transition: 0.1s ease-in all;
-    border: none;
+  &.waiting-for-photo {
+    > .shutter-button {
+      transition: 0.1s ease-in all;
+      border: none;
+    }
+
+    /* spin icon when image is generating (should it also be on hover?) */
+    /* .shutter-button:hover + .shutter-button-icon { */
+    > .shutter-button-icon svg {
+      animation-fill-mode: forwards;
+      animation-play-state: running;
+    }
   }
 
-  /* spin icon when image is generating (should it also be on hover?) */
-  /* .shutter-button:hover + .shutter-button-icon { */
-  > .shutter-button-icon svg {
-    animation-fill-mode: forwards;
-    animation-play-state: running;
-  }
+  /* &:not(.waiting-for-photo) {
+    .shutter-button::after {
+      content: '⟶';
+      vertical-align: 0.1em;
+    }
+  } */
 }
