@@ -12,6 +12,8 @@ import AuraCluster from './AuraCluster';
 import ShutterButtonWrapper from './ShutterButtonWrapper';
 import useWindowSize from './useWindowSize';
 import ExportControlsWrapper from './ExportControlsWrapper';
+import { AnimatePresence } from 'framer-motion';
+import Fade from './Fade';
 
 export type FacePositionType = {
   width: number;
@@ -162,19 +164,27 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
         )}
       </div>
 
-      {!isAuraReady && (
-        <ShutterButtonWrapper
-          onCaptureImage={onCaptureImage}
-          isCapturingPhoto={isCapturingPhoto}
-        />
-      )}
+      <AnimatePresence>
+        {!isAuraReady && (
+          <Fade isVisible={!isAuraReady} key="shutter-button-wrapper">
+            <ShutterButtonWrapper
+              onCaptureImage={onCaptureImage}
+              isCapturingPhoto={isCapturingPhoto}
+            />
+          </Fade>
+        )}
+      </AnimatePresence>
 
-      {isAuraReady && (
-        <ExportControlsWrapper
-          onRetakePhoto={onRetakePhoto}
-          onDownloadImage={onDownloadImage}
-        />
-      )}
+      <AnimatePresence>
+        {isAuraReady && (
+          <Fade isVisible={isAuraReady} key="exports-controls-wrapper">
+            <ExportControlsWrapper
+              onRetakePhoto={onRetakePhoto}
+              onDownloadImage={onDownloadImage}
+            />
+          </Fade>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

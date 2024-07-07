@@ -113,6 +113,10 @@ button {
   font-size: 1.4rem;
 }
 
+.start-camera button {
+  font-size: 1rem;
+}
+
 /* ~mobile~ */
 @media only screen and (max-width: 1084px) {
   .page-wrapper {
