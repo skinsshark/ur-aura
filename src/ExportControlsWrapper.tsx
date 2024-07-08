@@ -11,7 +11,7 @@ const ExportControlsWrapper = ({
     <div className="button-wrapper export-controls-wrapper">
       <div className="export-controls">
         <div className="control-wrapper">
-          <button disabled>Print photo (for event use only)</button>
+          <button disabled>print photo (for event use only)</button>
           <div className="button-icon">
             <svg
               viewBox="0 0 262 262"
@@ -27,7 +27,7 @@ const ExportControlsWrapper = ({
           </div>
         </div>
         <div className="control-wrapper">
-          <button onClick={onDownloadImage}>Save image to device</button>
+          <button onClick={onDownloadImage}>save image to device</button>
           <div className="button-icon">
             <svg
               viewBox="0 0 167 169"
@@ -44,7 +44,7 @@ const ExportControlsWrapper = ({
         </div>
       </div>
       <button onClick={onRetakePhoto} className="retake-photo-button">
-        Retake photo
+        retake photo
       </button>
     </div>
   );

@@ -18,7 +18,7 @@ const ShutterButtonWrapper = ({
         className={`shutter-button`}
         onClick={onCaptureImage}
       >
-        {isCapturingPhoto ? 'Generating aura.......' : 'Click to capture aura'}
+        {isCapturingPhoto ? 'generating aura.......' : 'click to capture aura'}
       </button>
       <div className="shutter-button-icon">
         <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
