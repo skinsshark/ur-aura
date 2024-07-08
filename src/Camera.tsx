@@ -57,6 +57,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
   const onRetakePhoto = () => {
     setWebcamImage(null);
     setIsAuraReady(false);
+    setIsCapturingPhoto(false);
   };
 
   const onCaptureImage = useCallback(() => {
@@ -80,16 +81,29 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
       });
   };
 
-  // determine face position, this can probably be done later
+  const adjustXCenterForAdjustedWidth = (
+    oldXCenter: number,
+    oldWidth: number
+  ) => {
+    const newWidth = oldWidth * 1.75;
+    const adjustment = (newWidth - oldWidth) / 2;
+    const newXCenter = oldXCenter - adjustment;
+    return newXCenter;
+  };
+
   useEffect(() => {
-    if (!boundingBox[0]) return;
+    if (!boundingBox[0] || isCapturingPhoto || isAuraReady) return;
 
     // only detect face if large enough on screen
-    if (boundingBox[0].width > 0.15) {
+    if (boundingBox[0].width > 0.15 && (!isCapturingPhoto || webcamImage)) {
+      const adjustedCenter = adjustXCenterForAdjustedWidth(
+        boundingBox[0].xCenter,
+        boundingBox[0].width
+      );
       setFacePosition({
-        width: boundingBox[0].width * 100,
+        width: boundingBox[0].width * 1.75 * 100,
         height: boundingBox[0].height * 100,
-        xCenter: boundingBox[0].xCenter * 100,
+        xCenter: adjustedCenter * 100,
         yCenter: boundingBox[0].yCenter * 100,
       });
     } else {
@@ -135,7 +149,6 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
           />
         )} */}
 
-        {/* TODO: BOUNDING BOX NEEDS TO STAY ANCHORED TO WEBCAM */}
         {webcamImage && facePosition ? (
           <div
             id="captured-webcam-photo"

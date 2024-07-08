@@ -1,5 +1,6 @@
 import { forwardRef, useEffect } from 'react';
 import { FacePositionType } from './Camera';
+import AuraFilter from './AuraFilter';
 
 type AuraProps = {
   svgWidth: number;
@@ -38,17 +39,22 @@ const Aura = forwardRef<SVGSVGElement, AuraProps>(
         ref.current.style.left = `${Math.round(left)}%`;
       }
     }, [facePosition, height, ref, width, top, left]);
+    const PADDING = 500; // to pad for filter effect
 
     return (
       <svg
         ref={ref}
-        width={svgWidth}
-        height={svgHeight}
-        viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+        viewBox={`-${PADDING} -${PADDING} ${svgWidth + PADDING + PADDING} ${
+          svgHeight + PADDING + PADDING
+        }`}
         fill="none"
         fillOpacity={fillOpacity}
         xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid meet"
       >
+        <defs>
+          <AuraFilter />
+        </defs>
         <path d={d} fill={fillColor} />
       </svg>
     );

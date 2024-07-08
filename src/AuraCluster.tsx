@@ -39,7 +39,7 @@ const AuraCluster = ({
   const [auraScale, setAuraScale] = useState(1);
 
   const CROWN_AURA_HEIGHT = facePosition.height * 4 * auraScale;
-  const CROWN_AURA_WIDTH = facePosition.width * 3 * auraScale;
+  const CROWN_AURA_WIDTH = facePosition.width * 2.5 * auraScale;
 
   const PAST_AURA_HEIGHT = facePosition.height * 2 * auraScale;
   const PAST_AURA_WIDTH = facePosition.width * 2 * auraScale;
@@ -51,7 +51,7 @@ const AuraCluster = ({
     if (facePosition.width < 10) {
       setAuraScale(1.6);
     } else {
-      setAuraScale(1);
+      setAuraScale(1.3);
     }
   }, [facePosition]);
 
@@ -66,7 +66,7 @@ const AuraCluster = ({
         width={FUTURE_AURA_WIDTH}
         height={FUTURE_AURA_HEIGHT}
         top={facePosition.yCenter}
-        left={facePosition.xCenter + facePosition.width - 4}
+        left={facePosition.xCenter + facePosition.width / 8}
         ref={auraRefs[0]}
       />
 
@@ -98,7 +98,7 @@ const AuraCluster = ({
         width={PAST_AURA_WIDTH}
         height={PAST_AURA_HEIGHT}
         top={facePosition.yCenter - 10}
-        left={facePosition.xCenter - PAST_AURA_WIDTH / 1.2}
+        left={facePosition.xCenter - PAST_AURA_WIDTH / 1.5}
         fillOpacity={0.7}
         ref={auraRefs[2]}
       />
