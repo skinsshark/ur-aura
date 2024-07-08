@@ -1,6 +1,6 @@
 import { forwardRef, useEffect } from 'react';
-import { FacePositionType } from './Camera';
 import AuraFilter from './AuraFilter';
+import { FacePositionType } from './CapturedImage';
 
 type AuraProps = {
   svgWidth: number;

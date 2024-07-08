@@ -1,8 +1,8 @@
 import { RefObject, useEffect, useState } from 'react';
-import { FacePositionType } from './Camera';
 import Aura from './Aura';
 
 import './AuraCluster.css';
+import { FacePositionType } from './CapturedImage';
 
 const COLORS = [
   '#FF3D3D',
