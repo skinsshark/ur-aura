@@ -21,10 +21,13 @@ header {
   align-items: center;
   transition-property: opacity;
   transition-timing-function: ease-in-out;
+  padding-right: var(--window-padding);
+  position: relative;
 }
 
 .start-camera svg {
   position: relative;
+  max-width: 70vh;
   webkit-animation: spin 180s linear infinite;
   -moz-animation: spin 180s linear infinite;
   -ms-animation: spin 180s linear infinite;
@@ -32,11 +35,11 @@ header {
   animation: spin 180s linear infinite;
 }
 
-.start-camera button {
+.start-camera .start-camera-button {
   position: absolute;
-  background: none;
-  border: none;
-  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 220px;
   height: 220px;
   border-radius: 100%;

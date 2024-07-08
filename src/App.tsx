@@ -3,6 +3,8 @@ import Camera from './Camera';
 
 import './App.css';
 import LoadingScreen from './LoadingScreen';
+import { AnimatePresence } from 'framer-motion';
+import Fade from './Fade';
 
 const FADE_IN_DURATION = 4000;
 const FADE_OUT_DURATION = 1000;
@@ -41,6 +43,8 @@ function App() {
   // 4s: spinning text fades out
   // 5s: entire loading screen fades out
   // 7s: loading screen unmounts
+
+  // TODO: need to redo this math
   useEffect(() => {
     // after 2 seconds of loading, fade in page border
     const borderFadeInTimer = setTimeout(() => {
@@ -110,7 +114,17 @@ function App() {
                 />
               </svg>
 
-              <button onClick={handleButtonClick}>Click to open camera</button>
+              <AnimatePresence>
+                <Fade
+                  isVisible={!showCamera}
+                  delay={5.5 + 1}
+                  className="start-camera-button"
+                >
+                  <button onClick={handleButtonClick}>
+                    Click to open camera
+                  </button>
+                </Fade>
+              </AnimatePresence>
             </div>
           )}
         </div>
