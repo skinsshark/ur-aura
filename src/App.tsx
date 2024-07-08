@@ -67,7 +67,7 @@ function App() {
   return (
     <>
       <div className="lil-border" ref={pageBorderRef} />
-      {isLoading && <LoadingScreen isLoading={isLoading} />}
+      {isLoading && <LoadingScreen />}
       <div className="page-wrapper">
         <div className="text-sidebar">
           <header>

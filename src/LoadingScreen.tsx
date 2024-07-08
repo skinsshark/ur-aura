@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './LoadingScreen.css';
 
-const LoadingScreen = (isLoading: { isLoading: boolean }) => {
+const LoadingScreen = () => {
   const spinningTextRef = React.useRef<HTMLDivElement>(null);
   const loadingScreenRef = React.useRef<HTMLDivElement>(null);
 
