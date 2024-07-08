@@ -19,7 +19,6 @@ const CapturedImage = ({
 }) => {
   const { imgRef, boundingBox } = useFaceDetection({
     faceDetectionOptions: {
-      selfieMode: true,
       model: 'short',
     },
     faceDetection: new FaceDetection.FaceDetection({
@@ -68,7 +67,8 @@ const CapturedImage = ({
   ];
 
   return (
-    <>
+    <div id="captured-webcam-photo">
+      {/* for debugging */}
       {/* {facePosition && (
         <div
           className="bounding-box"
@@ -83,7 +83,6 @@ const CapturedImage = ({
       <img
         ref={imgRef} // this is causing scary error
         crossOrigin="anonymous"
-        id="captured-webcam-photo"
         alt="person from webcam with aura (hopefully)"
         style={{
           width: windowHeight * 0.75,
@@ -97,7 +96,7 @@ const CapturedImage = ({
       {facePosition && (
         <AuraCluster facePosition={facePosition} auraRefs={auraRefs} />
       )}
-    </>
+    </div>
   );
 };
 

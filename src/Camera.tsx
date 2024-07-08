@@ -65,19 +65,28 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
       className={`camera-wrapper ${fadeInVideo ? 'fade-in' : ''}`}
       style={{ animationDuration: `4000ms`, animationDelay: `500ms` }}
     >
-      <div
-        style={{
-          width: windowHeight * 0.75,
-          height: windowHeight,
-          position: 'relative',
-        }}
-      >
-        {webcamImage ? (
+      {webcamImage ? (
+        <div
+          style={{
+            width: windowHeight * 0.75,
+            height: windowHeight,
+            position: 'relative',
+          }}
+        >
           <CapturedImage
             webcamImage={webcamImage}
             windowHeight={windowHeight}
           />
-        ) : (
+        </div>
+      ) : (
+        <div
+          style={{
+            width: windowHeight * 0.75,
+            height: windowHeight,
+            position: 'relative',
+          }}
+        >
+          {' '}
           <AnimatePresence>
             <Fade
               isVisible={!isCapturingPhoto && !isAuraReady}
@@ -97,8 +106,8 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
               />
             </Fade>
           </AnimatePresence>
-        )}
-      </div>
+        </div>
+      )}
 
       <AnimatePresence>
         {!isAuraReady && (
