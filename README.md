@@ -1,1 +1,1 @@
-<img width="1318" alt="image" src="https://github.com/skinsshark/ur-aura/assets/13009769/17b8a32e-c148-4817-a481-0398e7725ec0">
+<img width="1287" alt="image" src="https://github.com/skinsshark/ur-aura/assets/13009769/17d3972a-40ef-4803-a3c6-1cddb049f8fc">
