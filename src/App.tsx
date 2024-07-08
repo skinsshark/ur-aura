@@ -72,7 +72,7 @@ function App() {
         <div className="text-sidebar">
           <header>
             {/* ⋆⁂･ﾟ*⋆⁂･ﾟ* */}
-            <h1>ur-@ur@</h1>
+            <h1>UR-@URA</h1>
             <p>your energy, colorized</p>
           </header>
           <footer>

@@ -6,7 +6,7 @@ const LoadingScreen = () => {
   const loadingScreenRef = React.useRef<HTMLDivElement>(null);
 
   // spinning text
-  const text = 'ur-@ur@ ⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆ loading... ⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆';
+  const text = 'UR-@URA ⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆ loading... ⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆';
 
   useEffect(() => {
     // on load, fade in spinning loading text
