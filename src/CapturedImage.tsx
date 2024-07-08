@@ -2,6 +2,7 @@ import { RefObject, useEffect, useRef, useState } from 'react';
 import AuraCluster from './AuraCluster';
 import { useFaceDetection } from 'react-use-face-detection';
 import FaceDetection from '@mediapipe/face_detection';
+import { SelfieSegmentation } from '@mediapipe/selfie_segmentation';
 
 export type FacePositionType = {
   width: number;
@@ -17,6 +18,10 @@ const CapturedImage = ({
   webcamImage: string;
   windowHeight: number;
 }) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const contextRef = useRef<CanvasRenderingContext2D>();
+  const [segmentedImgSrc, setSegmentedImgSrc] = useState<string | null>(null);
+
   const { imgRef, boundingBox } = useFaceDetection({
     faceDetectionOptions: {
       model: 'short',
@@ -26,6 +31,77 @@ const CapturedImage = ({
         `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/${file}`,
     }),
   });
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext('2d');
+      if (ctx) contextRef.current = ctx;
+    }
+
+    const selfieSegmentation = new SelfieSegmentation({
+      locateFile: (file) =>
+        `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`,
+    });
+    selfieSegmentation.setOptions({
+      modelSelection: 1,
+      selfieMode: true,
+    });
+
+    selfieSegmentation.onResults(onResults);
+
+    const sendToMediaPipe = async () => {
+      // If there video isn't ready yet, just loop againf
+      if (imgRef.current) {
+        await selfieSegmentation.send({ image: imgRef.current });
+      }
+      requestAnimationFrame(sendToMediaPipe);
+    };
+
+    sendToMediaPipe();
+  }, [imgRef]);
+
+  const onResults = (results: any) => {
+    if (contextRef.current && canvasRef.current) {
+      contextRef.current.save();
+      contextRef.current.clearRect(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
+      contextRef.current.drawImage(
+        results.segmentationMask,
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
+
+      contextRef.current.globalCompositeOperation = 'source-out';
+      contextRef.current.fillStyle = 'red';
+      contextRef.current.fillRect(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
+
+      contextRef.current.globalCompositeOperation = 'destination-atop';
+      contextRef.current.drawImage(
+        results.image,
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
+
+      contextRef.current.restore();
+
+      const dataURL = canvasRef.current.toDataURL();
+      setSegmentedImgSrc(dataURL); // Set the base64-encoded data URL
+      console.log(segmentedImgSrc);
+    }
+  };
 
   const [facePosition, setFacePosition] = useState<FacePositionType | null>(
     null
@@ -96,6 +172,19 @@ const CapturedImage = ({
       {facePosition && (
         <AuraCluster facePosition={facePosition} auraRefs={auraRefs} />
       )}
+      {segmentedImgSrc && (
+        <img
+          src={segmentedImgSrc}
+          alt="Segmented Result"
+          style={{ position: 'absolute', top: 0, left: 0 }}
+        />
+      )}
+      <canvas
+        ref={canvasRef}
+        style={{
+          display: 'none',
+        }}
+      />
     </div>
   );
 };
