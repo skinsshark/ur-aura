@@ -72,13 +72,13 @@ function App() {
         <div className="text-sidebar">
           <header>
             {/* ⋆⁂･ﾟ*⋆⁂･ﾟ* */}
-            <h1>UR-AURA</h1>
-            <p>Your energy, colorized</p>
+            <h1>ur-@ur@</h1>
+            <p>your energy, colorized</p>
           </header>
           <footer>
             <p>
-              Visit me IRL to purchase your aura photo and companion guidebook.
-              DM or email for private events/inquiries.
+              visit me IRL to purchase your aura photo and companion guidebook.
+              email or DM for private events/inquiries
             </p>
           </footer>
         </div>
@@ -121,7 +121,7 @@ function App() {
                   className="start-camera-button"
                 >
                   <button onClick={handleButtonClick}>
-                    Click to open camera
+                    click to open camera
                   </button>
                 </Fade>
               </AnimatePresence>
