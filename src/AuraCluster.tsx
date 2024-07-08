@@ -23,7 +23,6 @@ const AuraCluster = ({
   auraRefs: RefObject<SVGSVGElement>[];
 }) => {
   const [auraColors, setAuraColors] = useState({
-    heart: '',
     crown: '',
     past: '',
     future: '',
@@ -31,7 +30,6 @@ const AuraCluster = ({
 
   useEffect(() => {
     setAuraColors({
-      heart: COLORS[Math.floor(Math.random() * COLORS.length)],
       crown: COLORS[Math.floor(Math.random() * COLORS.length)],
       past: COLORS[Math.floor(Math.random() * COLORS.length)],
       future: COLORS[Math.floor(Math.random() * COLORS.length)],
@@ -49,9 +47,6 @@ const AuraCluster = ({
   const FUTURE_AURA_HEIGHT = facePosition.height * 1.6 * auraScale;
   const FUTURE_AURA_WIDTH = facePosition.width * 2 * auraScale;
 
-  const HEART_AURA_HEIGHT = facePosition.height * 2 * auraScale;
-  const HEART_AURA_WIDTH = facePosition.width * 3 * auraScale;
-
   useEffect(() => {
     if (facePosition.width < 10) {
       setAuraScale(1.6);
@@ -63,22 +58,6 @@ const AuraCluster = ({
   return (
     <div className="aura-cluster">
       <Aura
-        svgWidth={979}
-        svgHeight={407}
-        d="M300.778 32.6742C202.722 5.0961 85.9151 -30.9915 25.2279 58.44C-25.9438 133.849 10.4538 244.322 51.3514 290.331C72.769 314.426 105.933 337.803 135.09 351.167C159.962 362.567 189.069 365.433 215.966 367.628C251.595 370.537 281.718 382.999 316.166 389.458C357.111 397.135 399.688 393.532 441.058 399.836C477.528 405.393 512.946 407.568 549.846 404.846C637.043 398.413 728.552 376.472 800.346 325.401C848.736 290.98 906.471 262.617 946.352 218.044C980.613 179.753 979.277 152.321 978.559 103.53C977.231 13.2065 874.392 0.467102 801.062 0.467102C748.926 0.467102 714.708 13.4017 672.591 46.2728C634.362 76.1107 604.879 116.413 552.709 116.413C503.414 116.413 456.43 100.047 416.724 71.3228C386.33 49.3358 336.312 42.6682 300.778 32.6742Z"
-        fillColor={auraColors.heart}
-        facePosition={facePosition}
-        width={HEART_AURA_WIDTH}
-        height={HEART_AURA_HEIGHT}
-        top={facePosition.yCenter + facePosition.height - 10}
-        left={
-          facePosition.xCenter - (HEART_AURA_WIDTH - facePosition.width) / 2
-        }
-        // fillOpacity={0.6}
-        ref={auraRefs[0]}
-      />
-
-      <Aura
         svgWidth={1226}
         svgHeight={1808}
         d="M167.93 89.3709C257.709 12.5619 344.017 -34.2484 446.824 30.7855C492.894 59.9285 533.49 127.689 553.089 145.199C576.601 166.206 595.274 203.883 614.975 233.422C634.342 262.461 651.65 289.617 675.843 306.481C710.482 330.627 749.953 337.138 786.382 350.593C822.152 363.805 859.91 367.067 894.886 385.055C924.551 400.311 950.717 428.851 975.297 460.182C997.393 488.346 1020.84 512.786 1043.7 539.1C1068.94 568.161 1085.16 605.991 1101.1 649.723C1134.3 740.741 1165.61 837.176 1195.97 930.933C1217.15 996.34 1229.59 1044.5 1225.08 1120.82C1221.19 1186.69 1210.09 1253.02 1201.67 1317.6C1185.51 1441.46 1170.87 1583.39 1118.61 1680.14C1094.22 1725.31 1069.09 1768.89 1034.74 1791.45C994.839 1817.66 945.535 1804.89 903.64 1804.89H759.918C701.762 1804.89 642.81 1811.41 585.66 1789.73C545.716 1774.57 506.983 1755.24 479.599 1701.16C450.092 1642.88 419.399 1583.9 393.488 1520.92C369.418 1462.42 352.341 1396.71 327.734 1338.96C293.465 1258.54 258.067 1179.76 233.073 1089.46C212.445 1014.93 205.412 929.832 179.534 859.252C159.394 804.324 124.664 774.728 91.7942 746.906C61.2076 721.016 24.8312 685.28 8.12605 632.492C-6.75138 585.479 2.46046 523.239 7.10819 473.277C22.8315 304.257 76.2312 167.822 167.93 89.3709Z"
@@ -88,7 +67,7 @@ const AuraCluster = ({
         height={FUTURE_AURA_HEIGHT}
         top={facePosition.yCenter}
         left={facePosition.xCenter + facePosition.width - 4}
-        ref={auraRefs[1]}
+        ref={auraRefs[0]}
       />
 
       <Aura
@@ -107,7 +86,7 @@ const AuraCluster = ({
         }
         facePosition={facePosition}
         fillColor={auraColors.crown}
-        ref={auraRefs[2]}
+        ref={auraRefs[1]}
       />
 
       <Aura
@@ -121,7 +100,7 @@ const AuraCluster = ({
         top={facePosition.yCenter - 10}
         left={facePosition.xCenter - PAST_AURA_WIDTH / 1.2}
         fillOpacity={0.7}
-        ref={auraRefs[3]}
+        ref={auraRefs[2]}
       />
     </div>
   );

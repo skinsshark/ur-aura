@@ -37,7 +37,6 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
     useRef<SVGSVGElement>(null),
     useRef<SVGSVGElement>(null),
     useRef<SVGSVGElement>(null),
-    useRef<SVGSVGElement>(null),
   ];
 
   const { webcamRef, boundingBox } = useFaceDetection({
