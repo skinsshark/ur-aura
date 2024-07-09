@@ -1,7 +1,7 @@
 import Webcam from 'react-webcam';
 import { useState, useEffect, useRef } from 'react';
 
-import * as htmlToImage from 'html-to-image';
+import { toPng } from 'html-to-image';
 
 import './Camera.css';
 import ShutterButtonWrapper from './ShutterButtonWrapper';
@@ -33,17 +33,33 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
     setWebcamImage(imgSrc);
   };
 
-  const onDownloadImage = () => {
-    htmlToImage
-      .toPng(document.getElementById('captured-webcam-photo') as HTMLElement)
-      .then((dataUrl) => {
+  const onDownloadImage = async () => {
+    try {
+      const photoEl = document.getElementById(
+        'captured-webcam-photo'
+      ) as HTMLElement;
+      const toPngOptions = {
+        cacheBust: false,
+        width: windowHeight * 0.75,
+        height: windowHeight,
+      };
+
+      // need to run this 3x times for it to work on safari apple whyyyyy
+      await toPng(photoEl, toPngOptions);
+      await toPng(photoEl, toPngOptions);
+      const dataUrl = await toPng(photoEl, toPngOptions);
+
+      if (dataUrl) {
         const date = new Date();
         // tmp download image
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = `${date.toISOString()}.png`;
         link.click();
-      });
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   // determine if aura is rendered
