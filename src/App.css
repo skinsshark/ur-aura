@@ -40,12 +40,14 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #fff;
+}
+
+.start-camera .start-camera-button button {
+  padding: 60px;
   width: 220px;
   height: 220px;
   border-radius: 100%;
-  padding: 60px;
-  color: #fff;
-  cursor: pointer;
 }
 
 .start-camera.fade-out {

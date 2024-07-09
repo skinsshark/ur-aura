@@ -1,3 +1,4 @@
+/* todo share button styles */
 .button-wrapper {
   position: absolute;
   bottom: 0;
@@ -6,18 +7,16 @@
   border-top: 1px solid #fff;
   display: flex;
   padding-bottom: var(--window-padding);
+}
 
-  .button-icon {
-    > svg {
-      animation-name: spin;
-      animation-duration: 10s;
-      animation-timing-function: linear;
-      animation-fill-mode: backwards;
-      animation-play-state: paused;
-      animation-iteration-count: infinite;
-      transition: 1s ease-in-out all;
-    }
-  }
+.button-wrapper .button-icon svg {
+  animation-name: spin;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-fill-mode: backwards;
+  animation-play-state: paused;
+  animation-iteration-count: infinite;
+  transition: 1s ease-in-out all;
 }
 
 .export-controls-wrapper {
@@ -26,63 +25,58 @@
   width: calc(100vw - 75vh);
   flex-direction: column;
   padding-left: var(--window-padding);
+}
 
-  .export-controls {
-    display: flex;
+.export-controls {
+  display: flex;
+}
 
-    .control-wrapper {
-      display: flex;
-      flex-direction: row-reverse;
-      flex: 1;
-      padding: 0 2rem;
+.export-controls .control-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  flex: 1;
+  padding: 0 2rem;
+}
 
-      .button-icon {
-        /* vars pleaseee, width(=height) - retake photo padding and font size and a lil */
-        width: calc(10vw - 0.5rem - 0.64rem - 0.5rem);
-        padding: 0.5rem;
-      }
+.export-controls button:not([disabled]):hover + .button-icon svg {
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
 
-      button {
-        flex: 1;
-      }
+.control-wrapper:last-child {
+  border-left: 1px solid #fff;
+}
 
-      button[disabled] {
-        opacity: 0.5;
-      }
+.control-wrapper .button-icon {
+  /* vars pleaseee, width(=height) - retake photo padding and font size and a lil */
+  width: calc(10vw - 0.5rem - 0.64rem - 0.5rem);
+  padding: 0.5rem;
+}
 
-      button[disabled] + .button-icon {
-        opacity: 0.5;
-      }
+.control-wrapper button {
+  flex: 1;
+}
 
-      &:last-child {
-        border-left: 1px solid #fff;
-      }
-    }
+.control-wrapper button[disabled],
+.control-wrapper button[disabled] + .button-icon {
+  opacity: 0.5;
+}
 
-    button:not([disabled]):hover + .button-icon svg {
-      animation-fill-mode: forwards;
-      animation-play-state: running;
-    }
-  }
-
-  .retake-photo-button {
-    border-top: 1px solid #fff;
-    padding: 0.5rem;
-  }
+.export-controls-wrapper .retake-photo-button {
+  border-top: 1px solid #fff;
+  padding: 0.5rem;
 }
 
 @media only screen and (max-width: 1416px) {
-  .export-controls-wrapper {
-    .export-controls {
-      flex-direction: column;
+  .export-controls-wrapper .export-controls {
+    flex-direction: column;
+  }
 
-      .control-wrapper {
-        padding: 0 45px;
+  .control-wrapper {
+    padding: 0 45px;
+  }
 
-        &:last-child {
-          border-top: 1px solid #fff;
-        }
-      }
-    }
+  .control-wrapper:last-child {
+    border-top: 1px solid #fff;
   }
 }
