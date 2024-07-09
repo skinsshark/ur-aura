@@ -105,6 +105,7 @@ button[disabled] {
   cursor: default;
 }
 
+.start-camera-button:hover button,
 button:not([disabled]):hover {
   text-transform: uppercase;
 }

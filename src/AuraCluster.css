@@ -11,7 +11,12 @@
   position: absolute;
   transition: 0.1s ease-in all;
   filter: blur(60px) url(#wavy);
+  -webkit-filter: blur(60px) url(#wavy);
   z-index: 0;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
 }
 
 @keyframes fade-in-aura {
