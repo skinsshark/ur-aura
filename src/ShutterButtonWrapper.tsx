@@ -3,9 +3,11 @@ import './ShutterButtonWrapper.css';
 const ShutterButtonWrapper = ({
   onCaptureImage,
   isCapturingPhoto,
+  hasPermission,
 }: {
   onCaptureImage: () => void;
   isCapturingPhoto: boolean;
+  hasPermission: boolean;
 }) => {
   return (
     <div
@@ -13,13 +15,22 @@ const ShutterButtonWrapper = ({
         isCapturingPhoto ? 'waiting-for-photo' : ''
       }`}
     >
-      <button
-        disabled={isCapturingPhoto}
-        className={`shutter-button`}
-        onClick={onCaptureImage}
-      >
-        {isCapturingPhoto ? 'generating aura.......' : 'click to capture aura'}
-      </button>
+      {hasPermission ? (
+        <button
+          disabled={isCapturingPhoto}
+          className="shutter-button"
+          onClick={onCaptureImage}
+        >
+          {isCapturingPhoto
+            ? 'generating aura.......'
+            : 'click to capture aura'}
+        </button>
+      ) : (
+        <button className="shutter-button no-camera-permission" disabled>
+          camera permissions are needed for this experience. please allow access
+          and refresh when ready....
+        </button>
+      )}
       <div className="shutter-button-icon">
         <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path

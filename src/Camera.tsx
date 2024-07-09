@@ -60,6 +60,21 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
     }
   }, [webcamImage]);
 
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const checkPermissions = async () => {
+      try {
+        await navigator.mediaDevices.getUserMedia({ video: true });
+        setHasPermission(true);
+      } catch (error) {
+        setHasPermission(false);
+      }
+    };
+
+    checkPermissions();
+  }, []);
+
   return (
     <div
       className={`camera-wrapper ${fadeInVideo ? 'fade-in' : ''}`}
@@ -110,11 +125,12 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
       )}
 
       <AnimatePresence>
-        {!isAuraReady && (
+        {!isAuraReady && hasPermission !== null && (
           <Fade isVisible={!isAuraReady} key="shutter-button-wrapper">
             <ShutterButtonWrapper
               onCaptureImage={onCaptureImage}
               isCapturingPhoto={isCapturingPhoto}
+              hasPermission={hasPermission}
             />
           </Fade>
         )}
