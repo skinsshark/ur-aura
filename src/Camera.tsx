@@ -117,7 +117,6 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
             position: 'relative',
           }}
         >
-          {' '}
           <AnimatePresence>
             <Fade
               isVisible={!isCapturingPhoto && !isAuraReady}

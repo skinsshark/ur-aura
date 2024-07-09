@@ -31,28 +31,25 @@ const CapturedImage = ({
     null
   );
 
-  const adjustXCenterForAdjustedWidth = (
-    oldXCenter: number,
-    oldWidth: number
-  ) => {
-    const newWidth = oldWidth * 1.75;
-    const adjustment = (newWidth - oldWidth) / 2;
-    const newXCenter = oldXCenter - adjustment;
-    return newXCenter;
+  // bounding box is being calculated against 100%/100% width height
+  // need to scale with origin at center
+  const scaleRelativeToCenter = (value: number) => {
+    const distanceFromCenter = value - 50;
+    const scaledDistance = distanceFromCenter * 1.75; // scaling factor same as width adjustment
+    return 50 + scaledDistance;
   };
 
   useEffect(() => {
     if (!boundingBox[0]) return;
 
     if (boundingBox[0].width > 0.15) {
-      const adjustedCenter = adjustXCenterForAdjustedWidth(
-        boundingBox[0].xCenter,
-        boundingBox[0].width
+      const adjustedXCenter = scaleRelativeToCenter(
+        boundingBox[0].xCenter * 100
       );
       setFacePosition({
         width: boundingBox[0].width * 1.75 * 100,
         height: boundingBox[0].height * 100,
-        xCenter: adjustedCenter * 100,
+        xCenter: adjustedXCenter,
         yCenter: boundingBox[0].yCenter * 100,
       });
     } else {
@@ -87,7 +84,6 @@ const CapturedImage = ({
         style={{
           width: windowHeight * 0.75,
           height: windowHeight,
-          backgroundImage: `url(${webcamImage})`,
           objectFit: 'cover',
         }}
         src={webcamImage}
