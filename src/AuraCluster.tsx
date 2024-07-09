@@ -65,8 +65,10 @@ const AuraCluster = ({
         facePosition={facePosition}
         width={FUTURE_AURA_WIDTH}
         height={FUTURE_AURA_HEIGHT}
-        top={facePosition.yCenter}
-        left={facePosition.xCenter + facePosition.width / 8}
+        top={facePosition.yCenter - 8}
+        left={
+          facePosition.xCenter + facePosition.width - FUTURE_AURA_WIDTH / 2.25
+        }
         ref={auraRefs[0]}
       />
 
@@ -97,8 +99,8 @@ const AuraCluster = ({
         facePosition={facePosition}
         width={PAST_AURA_WIDTH}
         height={PAST_AURA_HEIGHT}
-        top={facePosition.yCenter - 10}
-        left={facePosition.xCenter - PAST_AURA_WIDTH / 1.5}
+        top={facePosition.yCenter - 8}
+        left={facePosition.xCenter - PAST_AURA_WIDTH / 1.8}
         fillOpacity={0.7}
         ref={auraRefs[2]}
       />
