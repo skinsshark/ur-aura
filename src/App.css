@@ -10,6 +10,26 @@
   cursor: default;
 }
 
+@media only screen and (max-width: 598px) {
+  .text-sidebar {
+    padding: 30px 6vw;
+    border-right: none;
+    border-bottom: 1px solid #fff;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .start-camera.start-camera {
+    width: 100%;
+    padding: 0;
+    padding-right: 0;
+  }
+}
+
 header {
   display: flex;
   flex-direction: column;
@@ -48,6 +68,27 @@ header {
   width: 220px;
   height: 220px;
   border-radius: 100%;
+  color: #fff;
+}
+
+.start-camera[data-mobile-start-camera] {
+  display: none;
+}
+
+@media only screen and (max-width: 598px) {
+  .start-camera {
+    height: 100vw;
+  }
+
+  .mobile-start-screen {
+    display: flex;
+  }
+
+  .start-camera .start-camera-button button {
+    /* width: 110px;
+    height: 110px; */
+    padding: 40%;
+  }
 }
 
 .start-camera.fade-out {

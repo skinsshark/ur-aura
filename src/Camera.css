@@ -7,6 +7,12 @@
   /* overflow: hidden; */
 }
 
+@media screen and (max-width: 598px) {
+  .camera-wrapper {
+    /* height: 100vw; */
+  }
+}
+
 video {
   opacity: 0.8;
   background-color: #000;

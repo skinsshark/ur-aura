@@ -43,6 +43,13 @@
   animation-play-state: running;
 }
 
+@media only screen and (max-width: 598px) {
+  .button-wrapper.export-controls-wrapper {
+    width: 100%;
+    padding: 0;
+  }
+}
+
 .control-wrapper:last-child {
   border-left: 1px solid #fff;
 }
