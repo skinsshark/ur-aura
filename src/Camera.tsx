@@ -27,13 +27,11 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
   };
 
   const onCaptureImage = () => {
-    setTimeout(() => {
-      setIsCapturingPhoto(true);
+    setIsCapturingPhoto(true);
 
-      // @ts-ignore
-      const imgSrc = videoRef?.current?.getScreenshot();
-      setWebcamImage(imgSrc);
-    }, 3000);
+    // @ts-ignore
+    const imgSrc = videoRef?.current?.getScreenshot();
+    setWebcamImage(imgSrc);
   };
 
   // support continuity camera

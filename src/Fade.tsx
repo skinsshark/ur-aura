@@ -5,17 +5,19 @@ const Fade = ({
   isVisible,
   delay = 0,
   className = '',
+  skipExit = false,
   children,
 }: {
   isVisible: boolean;
   delay?: number;
   className?: string;
+  skipExit?: boolean;
   children: React.ReactNode;
 }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: isVisible ? 1 : 0 }}
-    exit={{ opacity: 0 }}
+    exit={{ opacity: skipExit ? 1 : 0 }}
     transition={{ duration: 1, delay }}
     className={className}
   >

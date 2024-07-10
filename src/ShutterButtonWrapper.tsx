@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import CameraCountdown from './CameraCountdown';
 import './ShutterButtonWrapper.css';
 
 const ShutterButtonWrapper = ({
@@ -9,6 +11,15 @@ const ShutterButtonWrapper = ({
   isCapturingPhoto: boolean;
   onCaptureImage: () => void;
 }) => {
+  const [buttonState, setButtonState] = useState<
+    'start' | 'countdown' | 'generating'
+  >('start');
+
+  const handleCountdownComplete = () => {
+    onCaptureImage();
+    setButtonState('generating');
+  };
+
   return (
     <div
       className={`shutter-button-wrapper ${
@@ -19,11 +30,15 @@ const ShutterButtonWrapper = ({
         <button
           disabled={isCapturingPhoto}
           className="shutter-button"
-          onClick={onCaptureImage}
+          onClick={() => setButtonState('countdown')}
         >
-          {isCapturingPhoto
-            ? 'generating aura.......'
-            : 'click to capture aura'}
+          {buttonState === 'start' && 'click to capture aura'}
+
+          {buttonState === 'countdown' && (
+            <CameraCountdown onComplete={handleCountdownComplete} />
+          )}
+
+          {buttonState === 'generating' && 'generating aura.......'}
         </button>
       ) : (
         <button className="shutter-button no-camera-permission" disabled>

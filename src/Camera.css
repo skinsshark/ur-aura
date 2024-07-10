@@ -31,3 +31,11 @@ video {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.countdown-numbers {
+  display: block;
+}
+
+.countdown-numbers > div {
+  display: inline;
+}
