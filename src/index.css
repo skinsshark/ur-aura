@@ -117,6 +117,10 @@ button {
   font-size: 1rem;
 }
 
+.countdown-numbers {
+  font-size: 2rem;
+}
+
 /* ~mobile~ */
 @media only screen and (max-width: 1084px) {
   .page-wrapper {
