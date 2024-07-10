@@ -18,7 +18,8 @@ const Fade = ({
     initial={{ opacity: 0 }}
     animate={{ opacity: isVisible ? 1 : 0 }}
     exit={{ opacity: skipExit ? 1 : 0 }}
-    transition={{ duration: 1, delay }}
+    // 3 is specific to countdown numbers
+    transition={{ duration: skipExit ? 3 : 1, delay }}
     className={className}
   >
     {children}
