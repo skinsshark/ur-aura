@@ -12,6 +12,7 @@ import Fade from './Fade';
 import CapturedImage from './CapturedImage';
 
 function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
+  const [deviceId, setDeviceId] = useState('');
   const { height: windowHeight } = useWindowSize();
   const videoRef = useRef(null);
 
@@ -33,6 +34,23 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
     setWebcamImage(imgSrc);
   };
 
+  // support continuity camera
+  useEffect(() => {
+    navigator.mediaDevices.enumerateDevices().then((devices) => {
+      const videoDevices = devices.filter(
+        (device) => device.kind === 'videoinput'
+      );
+
+      const continuityCamera = videoDevices.find((device) =>
+        device.label.includes('iPhone')
+      );
+
+      if (continuityCamera) {
+        setDeviceId(continuityCamera.deviceId);
+      }
+    });
+  }, []);
+
   const onDownloadImage = async () => {
     try {
       const photoEl = document.getElementById(
@@ -40,6 +58,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
       ) as HTMLElement;
       const toPngOptions = {
         cacheBust: false,
+        quality: 1,
         width: windowHeight * 0.75,
         height: windowHeight,
       };
@@ -127,6 +146,9 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
                 ref={videoRef}
                 forceScreenshotSourceSize
                 mirrored
+                videoConstraints={{
+                  deviceId,
+                }}
                 screenshotFormat="image/jpeg"
                 style={{
                   width: windowHeight * 0.75,
