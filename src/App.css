@@ -72,7 +72,9 @@ header {
 }
 
 .start-camera[data-mobile-start-camera] {
-  display: none;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
 }
 
 @media only screen and (max-width: 598px) {
@@ -80,13 +82,12 @@ header {
     height: 100vw;
   }
 
-  .mobile-start-screen {
-    display: flex;
+  .start-camera[data-mobile-start-camera] {
+    position: static;
+    opacity: 1;
   }
 
   .start-camera .start-camera-button button {
-    /* width: 110px;
-    height: 110px; */
     padding: 40%;
   }
 }

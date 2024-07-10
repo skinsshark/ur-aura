@@ -14,6 +14,7 @@ const StartButton = ({
   onClick: () => void;
 }) => {
   // why is this breaking the svg thickness??
+  // tmp workaround not display: none on reg screens, using opacity: 0;
   const isMobileDataTag = isMobile ? { 'data-mobile-start-camera': true } : {};
   return (
     <div

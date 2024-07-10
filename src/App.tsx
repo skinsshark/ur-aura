@@ -82,14 +82,12 @@ function App() {
             </p>
           </footer>
 
-          <div>
-            <StartButton
-              fadeOutStartButton={fadeOutStartButton}
-              onClick={handleStartButtonClick}
-              showCamera={showCamera}
-              isMobile={true}
-            />
-          </div>
+          <StartButton
+            fadeOutStartButton={fadeOutStartButton}
+            onClick={handleStartButtonClick}
+            showCamera={showCamera}
+            isMobile={true}
+          />
         </div>
 
         <div className="camera-wrapper">

@@ -159,6 +159,10 @@ button {
     height: auto;
   }
 
+  body::after {
+    content: '';
+  }
+
   .page-wrapper {
     display: flex;
     flex-direction: column;
