@@ -4,16 +4,16 @@ import Aura from './Aura';
 import './AuraCluster.css';
 import { FacePositionType } from './CapturedImage';
 
-const COLORS = [
-  '#FF3D3D',
-  '#ED8E00',
-  '#FFF066',
-  '#6CEF71',
-  '#DA6FFF',
-  '#FFB8EB',
-  '#65C7FF',
-  '#FFFFFF',
-];
+const RED = 'rgba(255, 111, 111, 1)';
+const ORANGE = 'rgba(237, 142, 0, 0.9)';
+const YELLOW = 'rgba(255, 240, 102, 0.8)';
+const GREEN = 'rgba(108, 239, 113, 0.8)';
+const PURPLE = 'rgba(218, 111, 255, 0.8)';
+const PINK = 'rgba(255, 184, 235, 1)';
+const BLUE = 'rgba(101, 199, 255, 0.8)';
+const WHITE = 'rgba(255, 255, 255, 1)';
+
+const COLORS = [RED, ORANGE, YELLOW, GREEN, PURPLE, PINK, BLUE, WHITE];
 
 const AuraCluster = ({
   facePosition,
@@ -27,7 +27,6 @@ const AuraCluster = ({
     past: '',
     future: '',
   });
-
   useEffect(() => {
     setAuraColors({
       crown: COLORS[Math.floor(Math.random() * COLORS.length)],
@@ -63,13 +62,9 @@ const AuraCluster = ({
         svgHeight={1661}
         width={CROWN_AURA_WIDTH}
         height={CROWN_AURA_HEIGHT}
-        top={
-          facePosition.yCenter -
-          (CROWN_AURA_HEIGHT - facePosition.height) / 2 -
-          10
-        }
+        top={facePosition.yCenter - facePosition.height * 2.4}
         left={
-          facePosition.xCenter - (CROWN_AURA_WIDTH - facePosition.width) / 2
+          facePosition.xCenter - (CROWN_AURA_WIDTH - facePosition.width) / 2 - 4
         }
         facePosition={facePosition}
         fillColor={auraColors.crown}
@@ -101,7 +96,6 @@ const AuraCluster = ({
         height={PAST_AURA_HEIGHT}
         top={facePosition.yCenter}
         left={facePosition.xCenter - PAST_AURA_WIDTH / 1.8}
-        fillOpacity={0.7}
         ref={auraRefs[2]}
       />
     </div>
