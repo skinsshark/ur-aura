@@ -16,17 +16,18 @@ const WHITE = 'rgba(255, 255, 255, 1)';
 const COLORS = [RED, ORANGE, YELLOW, GREEN, PURPLE, PINK, BLUE, WHITE];
 
 const AuraCluster = ({
-  facePosition,
   auraRefs,
+  facePosition,
 }: {
-  facePosition: FacePositionType;
   auraRefs: RefObject<SVGSVGElement>[];
+  facePosition: FacePositionType;
 }) => {
   const [auraColors, setAuraColors] = useState({
     crown: '',
     past: '',
     future: '',
   });
+
   useEffect(() => {
     setAuraColors({
       crown: COLORS[Math.floor(Math.random() * COLORS.length)],
@@ -68,7 +69,7 @@ const AuraCluster = ({
         }
         facePosition={facePosition}
         fillColor={auraColors.crown}
-        ref={auraRefs[1]}
+        ref={auraRefs[0]}
       />
 
       <Aura
@@ -83,7 +84,7 @@ const AuraCluster = ({
         left={
           facePosition.xCenter + facePosition.width - FUTURE_AURA_WIDTH / 2.25
         }
-        ref={auraRefs[0]}
+        ref={auraRefs[1]}
       />
 
       <Aura

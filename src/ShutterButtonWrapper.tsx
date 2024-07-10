@@ -1,13 +1,13 @@
 import './ShutterButtonWrapper.css';
 
 const ShutterButtonWrapper = ({
-  onCaptureImage,
-  isCapturingPhoto,
   hasPermission,
+  isCapturingPhoto,
+  onCaptureImage,
 }: {
-  onCaptureImage: () => void;
-  isCapturingPhoto: boolean;
   hasPermission: boolean;
+  isCapturingPhoto: boolean;
+  onCaptureImage: () => void;
 }) => {
   return (
     <div

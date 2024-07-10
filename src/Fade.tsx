@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 
 const Fade = ({
   isVisible,
-  children,
   delay = 0,
   className = '',
+  children,
 }: {
   isVisible: boolean;
-  children: React.ReactNode;
   delay?: number;
   className?: string;
+  children: React.ReactNode;
 }) => (
   <motion.div
     initial={{ opacity: 0 }}

@@ -26,7 +26,6 @@ const Aura = forwardRef<SVGSVGElement, AuraProps>(
       height,
       top,
       left,
-      fillOpacity = 1,
     },
     ref
   ) => {
@@ -47,7 +46,7 @@ const Aura = forwardRef<SVGSVGElement, AuraProps>(
           svgHeight + PADDING + PADDING
         }`}
         fill="none"
-        fillOpacity={fillOpacity}
+        fillOpacity={1}
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid meet"
       >

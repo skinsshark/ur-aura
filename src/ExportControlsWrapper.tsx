@@ -1,11 +1,11 @@
 import './ExportControlsWrapper.css';
 
 const ExportControlsWrapper = ({
-  onRetakePhoto,
   onDownloadImage,
+  onRetakePhoto,
 }: {
-  onRetakePhoto: () => void;
   onDownloadImage: () => void;
+  onRetakePhoto: () => void;
 }) => {
   return (
     <div className="button-wrapper export-controls-wrapper">

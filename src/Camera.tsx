@@ -12,13 +12,13 @@ import Fade from './Fade';
 import CapturedImage from './CapturedImage';
 
 function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
-  const [deviceId, setDeviceId] = useState('');
+  const [deviceId, setDeviceId] = useState<string>('');
   const { height: windowHeight } = useWindowSize();
   const videoRef = useRef(null);
 
-  const [isCapturingPhoto, setIsCapturingPhoto] = useState(false);
+  const [isCapturingPhoto, setIsCapturingPhoto] = useState<boolean>(false);
   const [webcamImage, setWebcamImage] = useState<string | null>(null);
-  const [isAuraReady, setIsAuraReady] = useState(false);
+  const [isAuraReady, setIsAuraReady] = useState<boolean>(false);
 
   const onRetakePhoto = () => {
     setWebcamImage(null);
@@ -27,11 +27,13 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
   };
 
   const onCaptureImage = () => {
-    setIsCapturingPhoto(true);
+    setTimeout(() => {
+      setIsCapturingPhoto(true);
 
-    // @ts-ignore
-    const imgSrc = videoRef?.current?.getScreenshot();
-    setWebcamImage(imgSrc);
+      // @ts-ignore
+      const imgSrc = videoRef?.current?.getScreenshot();
+      setWebcamImage(imgSrc);
+    }, 3000);
   };
 
   // support continuity camera

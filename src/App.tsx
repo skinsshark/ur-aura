@@ -43,8 +43,6 @@ function App() {
   // 4s: spinning text fades out
   // 5s: entire loading screen fades out
   // 7s: loading screen unmounts
-
-  // TODO: need to redo this math
   useEffect(() => {
     // after 2 seconds of loading, fade in page border
     const borderFadeInTimer = setTimeout(() => {
