@@ -35,21 +35,21 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
   };
 
   // support continuity camera
-  useEffect(() => {
-    navigator.mediaDevices.enumerateDevices().then((devices) => {
-      const videoDevices = devices.filter(
-        (device) => device.kind === 'videoinput'
-      );
+  // useEffect(() => {
+  //   navigator.mediaDevices.enumerateDevices().then((devices) => {
+  //     const videoDevices = devices.filter(
+  //       (device) => device.kind === 'videoinput'
+  //     );
 
-      const continuityCamera = videoDevices.find((device) =>
-        device.label.includes('iPhone')
-      );
+  //     const continuityCamera = videoDevices.find((device) =>
+  //       device.label.includes('iPhone')
+  //     );
 
-      if (continuityCamera) {
-        setDeviceId(continuityCamera.deviceId);
-      }
-    });
-  }, []);
+  //     if (continuityCamera) {
+  //       setDeviceId(continuityCamera.deviceId);
+  //     }
+  //   });
+  // }, []);
 
   const onDownloadImage = async () => {
     try {
