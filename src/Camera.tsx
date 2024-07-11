@@ -143,6 +143,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
               key="webcam"
             >
               <Webcam
+                audio={false}
                 ref={videoRef}
                 forceScreenshotSourceSize
                 mirrored

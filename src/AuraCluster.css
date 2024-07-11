@@ -8,18 +8,22 @@
   -webkit-animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
   -webkit-animation-delay: 0.6s;
+  -moz-animation: fade-in-aura ease-in-out 3s;
+  -moz-animation-iteration-count: 1;
+  -moz-animation-fill-mode: forwards;
+  -moz-animation-delay: 0.6s;
 }
 
 .aura-cluster svg {
   pointer-events: none;
   position: absolute;
   transition: 0.1s ease-in all;
+  z-index: 0;
   filter: blur(60px) url(#wavy);
   -webkit-filter: blur(60px) url(#wavy);
-  z-index: 0;
+  -webkit-transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
-  -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
 }
 
