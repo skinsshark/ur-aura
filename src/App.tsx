@@ -82,6 +82,7 @@ function App() {
             </p>
           </footer>
 
+          {/* mobile start button */}
           <StartButton
             fadeOutStartButton={fadeOutStartButton}
             onClick={handleStartButtonClick}

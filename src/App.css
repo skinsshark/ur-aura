@@ -43,6 +43,7 @@ header {
   transition-timing-function: ease-in-out;
   padding-right: var(--window-padding);
   position: relative;
+  overflow: hidden;
 }
 
 .start-camera svg {
@@ -86,6 +87,10 @@ header {
 
   .start-camera[data-mobile-start-camera] {
     display: flex;
+  }
+
+  .start-camera:not([data-mobile-start-camera]) {
+    display: none;
   }
 
   .start-camera svg {

@@ -27,8 +27,6 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
   };
 
   const onCaptureImage = () => {
-    setIsCapturingPhoto(true);
-
     // @ts-ignore
     const imgSrc = videoRef?.current?.getScreenshot();
     setWebcamImage(imgSrc);
@@ -138,7 +136,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
         >
           <AnimatePresence>
             <Fade
-              isVisible={!isCapturingPhoto && !isAuraReady}
+              isVisible={isCapturingPhoto || !isAuraReady}
               delay={1}
               key="webcam"
             >
@@ -169,6 +167,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
               onCaptureImage={onCaptureImage}
               isCapturingPhoto={isCapturingPhoto}
               hasPermission={hasPermission}
+              setIsCapturingPhoto={setIsCapturingPhoto}
             />
           </Fade>
         )}

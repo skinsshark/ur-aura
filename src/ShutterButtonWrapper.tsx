@@ -6,14 +6,21 @@ const ShutterButtonWrapper = ({
   hasPermission,
   isCapturingPhoto,
   onCaptureImage,
+  setIsCapturingPhoto,
 }: {
   hasPermission: boolean;
   isCapturingPhoto: boolean;
   onCaptureImage: () => void;
+  setIsCapturingPhoto: (isCapturingPhoto: boolean) => void;
 }) => {
   const [buttonState, setButtonState] = useState<
     'start' | 'countdown' | 'generating'
   >('start');
+
+  const handleShutterButtonClick = () => {
+    setIsCapturingPhoto(true);
+    setButtonState('countdown');
+  };
 
   const handleCountdownComplete = () => {
     onCaptureImage();
@@ -30,7 +37,7 @@ const ShutterButtonWrapper = ({
         <button
           disabled={isCapturingPhoto}
           className="shutter-button"
-          onClick={() => setButtonState('countdown')}
+          onClick={handleShutterButtonClick}
         >
           {buttonState === 'start' && 'click to capture aura'}
 

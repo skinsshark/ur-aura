@@ -49,7 +49,7 @@
   }
 }
 
-.shutter-button:hover + .shutter-button-icon svg,
+/* .shutter-button:hover + .shutter-button-icon svg, */
 .no-camera-permission + .shutter-button-icon svg {
   animation-fill-mode: forwards;
   animation-play-state: running;

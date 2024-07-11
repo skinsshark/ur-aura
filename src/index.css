@@ -55,7 +55,6 @@ a,
 a:focus,
 a:active,
 button {
-  /* font-style: italic; */
   color: #fff;
   margin: 0;
   font-weight: normal;
@@ -95,7 +94,6 @@ p {
 }
 
 footer p {
-  /* font-size: 1.6rem; */
   text-align: left;
 }
 
@@ -118,15 +116,11 @@ button:not([disabled]):hover {
 }
 
 button {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
 .start-camera button {
-  font-size: 1rem;
-}
-
-.countdown-numbers {
-  font-size: 2rem;
+  font-size: 1.2rem;
 }
 
 /* ~mobile~ */
@@ -158,16 +152,12 @@ button {
 @media only screen and (max-width: 598px) {
   html {
     font-size: 10px;
-
-    /* prevent mobile scrollbars */
-    -webkit-overflow-scrolling: touch;
-    overflow: -moz-scrollbars-none;
-    -ms-overflow-style: none;
   }
 
-  html::-webkit-scrollbar {
-    width: 0 !important;
-    display: none;
+  body {
+    overflow: scroll;
+    max-height: 100svh;
+    display: flex;
   }
 
   body::after {
