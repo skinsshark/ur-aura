@@ -77,8 +77,9 @@ function App() {
           </header>
           <footer>
             <p>
-              visit me IRL to purchase your aura photo and companion guidebook.
-              email or DM for private events/inquiries
+              the electromagnetic field around you is your aura, captured in
+              colors to illustrate your present, past, and future states. visit
+              me IRL to purchase your aura photo and companion guidebook
             </p>
           </footer>
 
