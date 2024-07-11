@@ -44,6 +44,8 @@ function App() {
   // 5s: entire loading screen fades out
   // 7s: loading screen unmounts
   useEffect(() => {
+    // smths weird w the css so force scroll to top on load
+    window.scrollTo(0, 0);
     // after 2 seconds of loading, fade in page border
     const borderFadeInTimer = setTimeout(() => {
       if (pageBorderRef.current) {

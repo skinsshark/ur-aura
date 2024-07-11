@@ -76,9 +76,14 @@ h1 {
   font-size: 6rem;
 }
 
+header p,
+footer p {
+  font-size: 1.6rem;
+  line-height: 2rem;
+}
+
 header p {
-  font-size: 2rem;
-  letter-spacing: 0.025rem;
+  margin-top: 0.4rem;
 }
 
 footer {
@@ -90,7 +95,7 @@ p {
 }
 
 footer p {
-  font-size: 1.4rem;
+  /* font-size: 1.6rem; */
   text-align: left;
 }
 
@@ -153,10 +158,16 @@ button {
 @media only screen and (max-width: 598px) {
   html {
     font-size: 10px;
+
+    /* prevent mobile scrollbars */
+    -webkit-overflow-scrolling: touch;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
   }
 
-  body {
-    height: auto;
+  html::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
   }
 
   body::after {
