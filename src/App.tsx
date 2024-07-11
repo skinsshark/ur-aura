@@ -3,8 +3,6 @@ import Camera from './Camera';
 
 import './App.css';
 import LoadingScreen from './LoadingScreen';
-import { AnimatePresence } from 'framer-motion';
-import Fade from './Fade';
 import StartButton from './StartButton';
 
 // rename these bc what are they even

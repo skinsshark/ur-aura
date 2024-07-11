@@ -72,19 +72,24 @@ header {
 }
 
 .start-camera[data-mobile-start-camera] {
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
+  display: none;
 }
 
 @media only screen and (max-width: 598px) {
+  .text-sidebar {
+    border: none;
+  }
+
   .start-camera {
     height: 100vw;
   }
 
   .start-camera[data-mobile-start-camera] {
-    position: static;
-    opacity: 1;
+    display: flex;
+  }
+
+  .start-camera svg {
+    width: 100%;
   }
 
   .start-camera .start-camera-button button {
