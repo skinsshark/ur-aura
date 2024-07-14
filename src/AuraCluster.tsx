@@ -4,16 +4,47 @@ import Aura from './Aura';
 import './AuraCluster.css';
 import { FacePositionType } from './CapturedImage';
 
-const RED = 'rgba(255, 111, 111, 1)';
-const ORANGE = 'rgba(237, 142, 0, 0.9)';
-const YELLOW = 'rgba(255, 240, 102, 0.8)';
-const GREEN = 'rgba(108, 239, 113, 0.8)';
-const PURPLE = 'rgba(218, 111, 255, 0.8)';
-const PINK = 'rgba(255, 184, 235, 1)';
-const BLUE = 'rgba(101, 199, 255, 0.8)';
-const WHITE = 'rgba(255, 255, 255, 1)';
+// color definitions
+type ColorType = {
+  color: string;
+  probability: number;
+};
 
-const COLORS = [RED, ORANGE, YELLOW, GREEN, PURPLE, PINK, BLUE, WHITE];
+// white most rare
+const RED: ColorType = { color: 'rgba(255, 111, 111, 1)', probability: 0.13 };
+const ORANGE: ColorType = {
+  color: 'rgba(237, 142, 0, 0.9)',
+  probability: 0.13,
+};
+const YELLOW: ColorType = {
+  color: 'rgba(255, 240, 102, 0.8)',
+  probability: 0.13,
+};
+const GREEN: ColorType = {
+  color: 'rgba(108, 239, 113, 0.8)',
+  probability: 0.13,
+};
+const PURPLE: ColorType = {
+  color: 'rgba(218, 111, 255, 0.8)',
+  probability: 0.13,
+};
+const PINK: ColorType = { color: 'rgba(255, 184, 235, 1)', probability: 0.13 };
+const BLUE: ColorType = {
+  color: 'rgba(101, 199, 255, 0.8)',
+  probability: 0.13,
+};
+const WHITE: ColorType = { color: 'rgba(255, 255, 255, 1)', probability: 0.09 };
+
+const COLORS: Array<ColorType> = [
+  RED,
+  ORANGE,
+  YELLOW,
+  GREEN,
+  PURPLE,
+  PINK,
+  BLUE,
+  WHITE,
+];
 
 const AuraCluster = ({
   auraRefs,
@@ -28,27 +59,35 @@ const AuraCluster = ({
     future: '',
   });
 
-  // force uniqueness btwn auras
+  // force uniqueness btwn auras + weighted color selection
   useEffect(() => {
-    const crownAuraColor = Math.floor(Math.random() * COLORS.length);
+    const createWeightedList = (colors: Array<ColorType>) => {
+      return colors.reduce((acc: Array<string>, colorObj: ColorType) => {
+        const count = Math.floor(colorObj.probability * 100);
+        for (let i = 0; i < count; i++) {
+          acc.push(colorObj.color);
+        }
+        return acc;
+      }, []);
+    };
 
-    let pastAuraColor = Math.floor(Math.random() * COLORS.length);
-    while (pastAuraColor === crownAuraColor) {
-      pastAuraColor = Math.floor(Math.random() * COLORS.length);
-    }
+    const selectRandomColor = (excludedColors: Array<string> = []): string => {
+      const availableColors = weightedColors.filter(
+        (color) => !excludedColors.includes(color)
+      );
+      const randomIndex = Math.floor(Math.random() * availableColors.length);
+      return availableColors[randomIndex];
+    };
 
-    let futureAuraColor = Math.floor(Math.random() * COLORS.length);
-    while (
-      futureAuraColor === crownAuraColor ||
-      futureAuraColor === pastAuraColor
-    ) {
-      futureAuraColor = Math.floor(Math.random() * COLORS.length);
-    }
+    const weightedColors = createWeightedList(COLORS);
+    const crownAuraColor = selectRandomColor();
+    const pastAuraColor = selectRandomColor([crownAuraColor]);
+    const futureAuraColor = selectRandomColor([crownAuraColor, pastAuraColor]);
 
     setAuraColors({
-      crown: COLORS[crownAuraColor],
-      past: COLORS[pastAuraColor],
-      future: COLORS[futureAuraColor],
+      crown: crownAuraColor,
+      past: pastAuraColor,
+      future: futureAuraColor,
     });
   }, []);
 
