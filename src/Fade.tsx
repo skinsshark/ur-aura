@@ -4,12 +4,14 @@ import { motion } from 'framer-motion';
 const Fade = ({
   isVisible,
   delay = 0,
+  duration = 1,
   className = '',
   skipExit = false,
   children,
 }: {
   isVisible: boolean;
   delay?: number;
+  duration?: number;
   className?: string;
   skipExit?: boolean;
   children: React.ReactNode;
@@ -19,7 +21,7 @@ const Fade = ({
     animate={{ opacity: isVisible ? 1 : 0 }}
     exit={{ opacity: skipExit ? 1 : 0 }}
     // 3 is specific to countdown numbers
-    transition={{ duration: skipExit ? 3 : 1, delay }}
+    transition={{ duration: skipExit ? 3 : duration, delay }}
     className={className}
   >
     {children}

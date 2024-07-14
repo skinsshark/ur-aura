@@ -2,6 +2,9 @@ import { RefObject, useEffect, useRef, useState } from 'react';
 import AuraCluster from './AuraCluster';
 import { useFaceDetection } from 'react-use-face-detection';
 import FaceDetection from '@mediapipe/face_detection';
+import ScreenFlash from './ScreenFlash';
+import { AnimatePresence } from 'framer-motion';
+import Fade from './Fade';
 
 export type FacePositionType = {
   width: number;
@@ -17,6 +20,8 @@ const CapturedImage = ({
   webcamImage: string;
   windowHeight: number;
 }) => {
+  const [flash, setFlash] = useState(false);
+
   const { imgRef, boundingBox } = useFaceDetection({
     faceDetectionOptions: {
       model: 'short',
@@ -57,6 +62,15 @@ const CapturedImage = ({
     }
   }, [boundingBox]);
 
+  useEffect(() => {
+    setFlash(true);
+    const timer = setTimeout(() => {
+      setFlash(false);
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const auraRefs: RefObject<SVGSVGElement>[] = [
     useRef<SVGSVGElement>(null),
     useRef<SVGSVGElement>(null),
@@ -64,9 +78,18 @@ const CapturedImage = ({
   ];
 
   return (
-    <div id="captured-webcam-photo">
-      {/* for debugging */}
-      {/* {facePosition && (
+    <>
+      <AnimatePresence>
+        {flash && (
+          <Fade isVisible={flash} duration={0.2} key="screen-flash">
+            <ScreenFlash flash={flash} />
+          </Fade>
+        )}
+      </AnimatePresence>
+
+      <div id="captured-webcam-photo" style={{ opacity: 0 }}>
+        {/* for debugging */}
+        {/* {facePosition && (
         <div
           className="bounding-box"
           style={{
@@ -77,22 +100,23 @@ const CapturedImage = ({
           }}
         />
       )} */}
-      <img
-        ref={imgRef} // this is causing scary error
-        crossOrigin="anonymous"
-        alt="person from webcam with aura (hopefully)"
-        style={{
-          width: windowHeight * 0.75,
-          height: windowHeight,
-          objectFit: 'cover',
-        }}
-        src={webcamImage}
-      />
-      {/* AURA */}
-      {facePosition && (
-        <AuraCluster facePosition={facePosition} auraRefs={auraRefs} />
-      )}
-    </div>
+        <img
+          ref={imgRef} // this is causing scary error
+          crossOrigin="anonymous"
+          alt="person from webcam with aura (hopefully)"
+          style={{
+            width: windowHeight * 0.75,
+            height: windowHeight,
+            objectFit: 'cover',
+          }}
+          src={webcamImage}
+        />
+        {/* AURA */}
+        {facePosition && (
+          <AuraCluster facePosition={facePosition} auraRefs={auraRefs} />
+        )}
+      </div>
+    </>
   );
 };
 
