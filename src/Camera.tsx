@@ -173,7 +173,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
         )}
       </AnimatePresence>
 
-      {/* <AnimatePresence>
+      <AnimatePresence>
         {isAuraReady && (
           <Fade isVisible={isAuraReady} key="exports-controls-wrapper">
             <ExportControlsWrapper
@@ -182,7 +182,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
             />
           </Fade>
         )}
-      </AnimatePresence> */}
+      </AnimatePresence>
     </div>
   );
 }

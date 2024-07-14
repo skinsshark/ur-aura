@@ -87,7 +87,7 @@ const CapturedImage = ({
         )}
       </AnimatePresence>
 
-      <div id="captured-webcam-photo" style={{ opacity: 0 }}>
+      <div id="captured-webcam-photo">
         {/* for debugging */}
         {/* {facePosition && (
         <div
