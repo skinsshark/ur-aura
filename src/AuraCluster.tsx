@@ -28,11 +28,27 @@ const AuraCluster = ({
     future: '',
   });
 
+  // force uniqueness btwn auras
   useEffect(() => {
+    const crownAuraColor = Math.floor(Math.random() * COLORS.length);
+
+    let pastAuraColor = Math.floor(Math.random() * COLORS.length);
+    while (pastAuraColor === crownAuraColor) {
+      pastAuraColor = Math.floor(Math.random() * COLORS.length);
+    }
+
+    let futureAuraColor = Math.floor(Math.random() * COLORS.length);
+    while (
+      futureAuraColor === crownAuraColor ||
+      futureAuraColor === pastAuraColor
+    ) {
+      futureAuraColor = Math.floor(Math.random() * COLORS.length);
+    }
+
     setAuraColors({
-      crown: COLORS[Math.floor(Math.random() * COLORS.length)],
-      past: COLORS[Math.floor(Math.random() * COLORS.length)],
-      future: COLORS[Math.floor(Math.random() * COLORS.length)],
+      crown: COLORS[crownAuraColor],
+      past: COLORS[pastAuraColor],
+      future: COLORS[futureAuraColor],
     });
   }, []);
 
