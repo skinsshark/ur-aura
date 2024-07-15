@@ -20,16 +20,21 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
   const [webcamImage, setWebcamImage] = useState<string | null>(null);
   const [isAuraReady, setIsAuraReady] = useState<boolean>(false);
 
-  const onRetakePhoto = () => {
-    setWebcamImage(null);
-    setIsAuraReady(false);
-    setIsCapturingPhoto(false);
-  };
+  // const onRetakePhoto = () => {
+  //   setWebcamImage(null);
+  //   setIsAuraReady(false);
+  //   setIsCapturingPhoto(false);
+  // };
 
   const onCaptureImage = () => {
     // @ts-ignore
     const imgSrc = videoRef?.current?.getScreenshot();
     setWebcamImage(imgSrc);
+
+    // automatically save image
+    setTimeout(async () => {
+      await onDownloadImage();
+    }, 2000);
   };
 
   // support continuity camera
