@@ -20,11 +20,11 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
   const [webcamImage, setWebcamImage] = useState<string | null>(null);
   const [isAuraReady, setIsAuraReady] = useState<boolean>(false);
 
-  // const onRetakePhoto = () => {
-  //   setWebcamImage(null);
-  //   setIsAuraReady(false);
-  //   setIsCapturingPhoto(false);
-  // };
+  const onRetakePhoto = () => {
+    setWebcamImage(null);
+    setIsAuraReady(false);
+    setIsCapturingPhoto(false);
+  };
 
   const onCaptureImage = () => {
     // @ts-ignore
@@ -178,7 +178,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
         )}
       </AnimatePresence>
 
-      {/* <AnimatePresence>
+      <AnimatePresence>
         {isAuraReady && (
           <Fade isVisible={isAuraReady} key="exports-controls-wrapper">
             <ExportControlsWrapper
@@ -187,7 +187,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
             />
           </Fade>
         )}
-      </AnimatePresence> */}
+      </AnimatePresence>
     </div>
   );
 }
