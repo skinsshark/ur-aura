@@ -87,9 +87,11 @@ const CapturedImage = ({
         )}
       </AnimatePresence>
 
-      <div id="captured-webcam-photo">
-        {/* for debugging */}
-        {/* {facePosition && (
+      {/* fix export to image */}
+      <div style={{ opacity: 0 }}>
+        <div id="captured-webcam-photo">
+          {/* for debugging */}
+          {/* {facePosition && (
         <div
           className="bounding-box"
           style={{
@@ -100,21 +102,22 @@ const CapturedImage = ({
           }}
         />
       )} */}
-        <img
-          ref={imgRef} // this is causing scary error
-          crossOrigin="anonymous"
-          alt="person from webcam with aura (hopefully)"
-          style={{
-            width: windowHeight * 0.75,
-            height: windowHeight,
-            objectFit: 'cover',
-          }}
-          src={webcamImage}
-        />
-        {/* AURA */}
-        {facePosition && (
-          <AuraCluster facePosition={facePosition} auraRefs={auraRefs} />
-        )}
+          <img
+            ref={imgRef} // this is causing scary error
+            crossOrigin="anonymous"
+            alt="person from webcam with aura (hopefully)"
+            style={{
+              width: windowHeight * 0.75,
+              height: windowHeight,
+              objectFit: 'cover',
+            }}
+            src={webcamImage}
+          />
+          {/* AURA */}
+          {facePosition && (
+            <AuraCluster facePosition={facePosition} auraRefs={auraRefs} />
+          )}
+        </div>
       </div>
     </>
   );
