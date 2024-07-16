@@ -90,7 +90,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
       const auraTimer = setTimeout(() => {
         setIsAuraReady(true);
         setIsCapturingPhoto(false);
-      }, 4000);
+      }, 16000);
 
       return () => clearTimeout(auraTimer);
     } else {

@@ -14,7 +14,7 @@ const ShutterButtonWrapper = ({
   setIsCapturingPhoto: (isCapturingPhoto: boolean) => void;
 }) => {
   const [buttonState, setButtonState] = useState<
-    'start' | 'countdown' | 'generating'
+    'start' | 'countdown' | 'generating' | 'analyze' | 'past' | 'future'
   >('start');
 
   const handleShutterButtonClick = () => {
@@ -24,7 +24,16 @@ const ShutterButtonWrapper = ({
 
   const handleCountdownComplete = () => {
     onCaptureImage();
-    setButtonState('generating');
+    setButtonState('analyze');
+    setTimeout(() => {
+      setButtonState('past');
+      setTimeout(() => {
+        setButtonState('future');
+        setTimeout(() => {
+          setButtonState('generating');
+        }, 4000);
+      }, 4000);
+    }, 4000);
   };
 
   return (
@@ -45,6 +54,9 @@ const ShutterButtonWrapper = ({
             <CameraCountdown onComplete={handleCountdownComplete} />
           )}
 
+          {buttonState === 'analyze' && 'analyzing the image.......'}
+          {buttonState === 'past' && 'reflecting on the past.......'}
+          {buttonState === 'future' && 'predicting future.......'}
           {buttonState === 'generating' && 'generating aura.......'}
         </button>
       ) : (
