@@ -76,7 +76,8 @@ h1 {
 }
 
 header p,
-footer p {
+footer p,
+p {
   font-size: 1.6rem;
   line-height: 2rem;
 }
@@ -111,7 +112,8 @@ button[disabled] {
   cursor: default;
 }
 
-button:not([disabled]):hover {
+button:not([disabled]):hover,
+a:hover {
   text-transform: uppercase;
 }
 

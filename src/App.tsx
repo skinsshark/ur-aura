@@ -83,6 +83,18 @@ function App() {
             </p>
           </footer>
 
+          <p>
+            follow{' '}
+            <a
+              href="https://instagram.com/sharon"
+              target="_blank"
+              rel="noreferrer"
+            >
+              @sharon
+            </a>{' '}
+            on IG for latest updates
+          </p>
+
           {/* mobile start button */}
           <StartButton
             fadeOutStartButton={fadeOutStartButton}
