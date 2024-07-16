@@ -6,11 +6,15 @@ const StartButton = ({
   fadeOutStartButton,
   showCamera,
   isMobile,
+  disabled = false,
+  text,
   onClick,
 }: {
   fadeOutStartButton: boolean;
   showCamera: boolean;
   isMobile?: boolean;
+  disabled?: boolean;
+  text: string;
   onClick: () => void;
 }) => {
   const isMobileDataTag = isMobile ? { 'data-mobile-start-camera': true } : {};
@@ -46,8 +50,8 @@ const StartButton = ({
           delay={5.5 + 1}
           className="start-camera-button"
         >
-          <button onClick={onClick} disabled={isMobile}>
-            {isMobile ? 'coming soon to mobile' : 'click to open camera'}
+          <button onClick={onClick} disabled={isMobile || disabled}>
+            {text}
           </button>
         </Fade>
       </AnimatePresence>

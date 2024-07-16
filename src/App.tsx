@@ -89,6 +89,7 @@ function App() {
             onClick={handleStartButtonClick}
             showCamera={showCamera}
             isMobile={true}
+            text="coming soon to mobile"
           />
         </div>
 
@@ -103,8 +104,10 @@ function App() {
           ) : (
             <StartButton
               fadeOutStartButton={fadeOutStartButton}
-              onClick={handleStartButtonClick}
+              onClick={() => {}}
               showCamera={showCamera}
+              disabled={true}
+              text="coming soon"
             />
           )}
         </div>
