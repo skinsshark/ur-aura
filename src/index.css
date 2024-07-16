@@ -153,7 +153,7 @@ button {
 /* --mobile-breakdpoint */
 @media only screen and (max-width: 598px) {
   html {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   body {
