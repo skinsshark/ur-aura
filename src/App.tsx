@@ -101,7 +101,7 @@ function App() {
             onClick={handleStartButtonClick}
             showCamera={showCamera}
             isMobile={true}
-            text="coming soon to mobile"
+            text="coming soon"
           />
         </div>
 
