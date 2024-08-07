@@ -66,13 +66,82 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
       await toPng(photoEl, toPngOptions);
       const dataUrl = await toPng(photoEl, toPngOptions);
 
+      // this is crazy bc css classes were loaded but not applied
       if (dataUrl) {
+        const hiddenPolaroid = document.createElement('div');
+        hiddenPolaroid.className = 'polaroid';
+        hiddenPolaroid.style.backgroundColor = '#fff';
+        hiddenPolaroid.style.display = 'flex';
+        hiddenPolaroid.style.gap = '20px';
+        hiddenPolaroid.style.flexDirection = 'column';
+        hiddenPolaroid.style.alignItems = 'center';
+        hiddenPolaroid.style.position = 'absolute';
+        hiddenPolaroid.style.transform = 'translateZ(-99999px)';
+
+        const imgElement = document.createElement('img');
+        imgElement.src = dataUrl;
+        imgElement.style.marginTop = '200px';
+        imgElement.width = 925;
+        imgElement.height = 1234;
+
+        hiddenPolaroid.appendChild(imgElement);
+        const polaroidText = document.createElement('div');
+        polaroidText.style.fontFamily = "'SimSong', 'Times New Roman', serif";
+        polaroidText.style.display = 'flex';
+        polaroidText.style.flexDirection = 'column';
+        polaroidText.style.alignItems = 'center';
+        polaroidText.style.gap = '8px';
+
+        const polaroidTitle = document.createElement('div');
+        polaroidTitle.innerText = 'UR-@URA';
+        polaroidTitle.style.fontSize = '128px';
+
+        // const polaroidSubtitle = document.createElement('div');
+        // polaroidSubtitle.innerText = 'your energy, colorized';
+        // polaroidSubtitle.style.fontSize = '48px';
+
+        const polaroidLink = document.createElement('div');
+        polaroidLink.innerText = 'ur-aura.sharonzheng.com';
+        polaroidLink.style.fontSize = '48px';
+
+        const polaroidTag = document.createElement('div');
+        polaroidTag.innerText = '(tag @sharon in your stories)';
+        polaroidTag.style.fontSize = '48px';
+
+        polaroidText.appendChild(polaroidTitle);
+        // polaroidText.appendChild(polaroidSubtitle);
+        polaroidText.appendChild(polaroidLink);
+        polaroidText.appendChild(polaroidTag);
+
+        hiddenPolaroid.appendChild(polaroidText);
+
+        await document.fonts.ready;
+        const polaroidToPngOptions = {
+          cacheBust: false,
+          quality: 1,
+          width: 1080,
+          height: 1920,
+        };
+
+        // need to run this 3x times for it to work on safari apple whyyyyy
+        await toPng(hiddenPolaroid, polaroidToPngOptions);
+        await toPng(hiddenPolaroid, polaroidToPngOptions);
+        const downloadImageUrl = await toPng(
+          hiddenPolaroid,
+          polaroidToPngOptions
+        );
+
+        document.body.appendChild(hiddenPolaroid);
+
         const date = new Date();
         // tmp download image
         const link = document.createElement('a');
-        link.href = dataUrl;
+        link.href = downloadImageUrl;
         link.download = `${date.toISOString()}.png`;
         link.click();
+        setTimeout(() => {
+          hiddenPolaroid.remove();
+        }, 1000);
       }
     } catch (e) {
       console.log(e);
