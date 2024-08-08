@@ -13,7 +13,7 @@ import CapturedImage from './CapturedImage';
 
 function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
   const [deviceId, setDeviceId] = useState<string>('');
-  const { height: windowHeight } = useWindowSize();
+  const { height, width } = useWindowSize();
   const videoRef = useRef(null);
 
   const [isCapturingPhoto, setIsCapturingPhoto] = useState<boolean>(false);
@@ -57,8 +57,8 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
       const toPngOptions = {
         cacheBust: false,
         quality: 1,
-        width: windowHeight * 0.75,
-        height: windowHeight,
+        width,
+        height,
       };
 
       // need to run this 3x times for it to work on safari apple whyyyyy
@@ -70,13 +70,14 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
       if (dataUrl) {
         const hiddenPolaroid = document.createElement('div');
         hiddenPolaroid.className = 'polaroid';
-        hiddenPolaroid.style.backgroundColor = '#fff';
+        hiddenPolaroid.style.backgroundColor = '#eee';
         hiddenPolaroid.style.display = 'flex';
         hiddenPolaroid.style.gap = '20px';
         hiddenPolaroid.style.flexDirection = 'column';
         hiddenPolaroid.style.alignItems = 'center';
         hiddenPolaroid.style.position = 'absolute';
         hiddenPolaroid.style.transform = 'translateZ(-99999px)';
+        hiddenPolaroid.style.zIndex = '-999999';
 
         const imgElement = document.createElement('img');
         imgElement.src = dataUrl;
@@ -185,21 +186,18 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
       {webcamImage ? (
         <div
           style={{
-            width: windowHeight * 0.75,
-            height: windowHeight,
+            width,
+            height,
             position: 'relative',
           }}
         >
-          <CapturedImage
-            webcamImage={webcamImage}
-            windowHeight={windowHeight}
-          />
+          <CapturedImage webcamImage={webcamImage} windowHeight={height} />
         </div>
       ) : (
         <div
           style={{
-            width: windowHeight * 0.75,
-            height: windowHeight,
+            width,
+            height,
             position: 'relative',
           }}
         >
@@ -219,8 +217,8 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
                 }}
                 screenshotFormat="image/jpeg"
                 style={{
-                  width: windowHeight * 0.75,
-                  height: windowHeight,
+                  width,
+                  height,
                   position: 'absolute',
                 }}
               />

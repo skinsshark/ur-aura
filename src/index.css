@@ -125,7 +125,7 @@ button {
 
 /* ~mobile~ */
 /* --tablet-breakpoint */
-@media only screen and (max-width: 1124px) {
+@media only screen and (max-width: 1124px) and (min-width: 599px) {
   .page-wrapper {
     display: none;
     /* flex-direction: column; */
@@ -139,7 +139,7 @@ button {
   }
 
   body::after {
-    content: 'go touch grass or smth\A\A⋆⁂･ﾟ';
+    content: 'use a bigger or smaller screen\Ajust pick a lane (lovingly)\A\A⋆⁂･ﾟ';
     white-space: pre;
     color: #fff;
     display: block;

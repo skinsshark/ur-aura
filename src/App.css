@@ -20,7 +20,7 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    /* bottom: 0; */
   }
 
   .start-camera.start-camera {
@@ -82,15 +82,7 @@ header {
   }
 
   .start-camera {
-    height: 100vw;
-  }
-
-  .start-camera[data-mobile-start-camera] {
-    display: flex;
-  }
-
-  .start-camera:not([data-mobile-start-camera]) {
-    display: none;
+    height: 100vh;
   }
 
   .start-camera svg {

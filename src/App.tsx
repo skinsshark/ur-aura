@@ -82,14 +82,6 @@ function App() {
               me IRL to purchase your aura photo and companion guidebook
             </p>
           </footer>
-
-          {/* mobile start button */}
-          <StartButton
-            fadeOutStartButton={fadeOutStartButton}
-            onClick={handleStartButtonClick}
-            showCamera={showCamera}
-            isMobile={true}
-          />
         </div>
 
         <div className="camera-wrapper">

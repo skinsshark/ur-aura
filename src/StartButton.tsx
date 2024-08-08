@@ -20,7 +20,7 @@ const StartButton = ({
     <div
       className={`start-camera ${fadeOutStartButton ? 'fade-out' : ''}`}
       style={{ transitionDuration: `${FADE_OUT_DURATION}ms` }}
-      {...isMobileDataTag}
+      //   {...isMobileDataTag}
     >
       <svg
         width="680"
@@ -46,9 +46,7 @@ const StartButton = ({
           delay={5.5 + 1}
           className="start-camera-button"
         >
-          <button onClick={onClick} disabled={isMobile}>
-            {isMobile ? 'coming soon to mobile' : 'click to open camera'}
-          </button>
+          <button onClick={onClick}>click to open camera</button>
         </Fade>
       </AnimatePresence>
     </div>
