@@ -4,38 +4,17 @@ import Camera from './Camera';
 import './App.css';
 import LoadingScreen from './LoadingScreen';
 import StartButton from './StartButton';
-
-// rename these bc what are they even
-const FADE_IN_DURATION = 4000;
-export const FADE_OUT_DURATION = 1000;
+import { AnimatePresence } from 'framer-motion';
+import Fade from './Fade';
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showCamera, setShowCamera] = useState<boolean>(false);
-
-  const [fadeOutStartButton, setFadeOutStartButton] = useState<boolean>(false);
-  const [fadeInVideo, setFadeInVideo] = useState<boolean>(false);
+  const [showStartButton, setShowStartButton] = useState<boolean>(true);
 
   const pageBorderRef = useRef<HTMLDivElement>(null);
 
-  const handleStartButtonClick = () => {
-    setFadeOutStartButton(true);
-    setTimeout(() => {
-      setShowCamera(true);
-      setFadeOutStartButton(false);
-      setFadeInVideo(true);
-    }, FADE_OUT_DURATION);
-  };
-
-  useEffect(() => {
-    if (showCamera) {
-      const timer = setTimeout(() => {
-        setFadeInVideo(false);
-      }, FADE_IN_DURATION);
-
-      return () => clearTimeout(timer);
-    }
-  }, [showCamera]);
+  console.log({ showStartButton });
 
   // animation timeline:
   // 0s: spinning text fades in
@@ -75,30 +54,51 @@ function App() {
             <h1>UR-@URA</h1>
             <p>your energy, colorized</p>
           </header>
-          <footer>
-            <p>
-              the electromagnetic field around you is your aura, captured in
-              colors to illustrate your present, past, and future states. visit
-              me IRL to purchase your aura photo and companion guidebook
-            </p>
-          </footer>
+          <AnimatePresence>
+            {showStartButton && (
+              <Fade isVisible={showStartButton} key="text-description">
+                <footer>
+                  <p>
+                    the electromagnetic field around you is your aura, captured
+                    in colors to illustrate your present, past, and future
+                    states. visit me IRL to purchase your aura photo and
+                    companion guidebook
+                  </p>
+                </footer>
+              </Fade>
+            )}
+          </AnimatePresence>
         </div>
 
         <div className="camera-wrapper">
-          {showCamera ? (
-            <div
-              className={`camera-overlay ${fadeInVideo ? 'fade-in' : ''}`}
-              style={{ animationDuration: `${FADE_IN_DURATION}ms` }}
-            >
-              <Camera fadeInVideo={fadeInVideo} />
-            </div>
-          ) : (
-            <StartButton
-              fadeOutStartButton={fadeOutStartButton}
-              onClick={handleStartButtonClick}
-              showCamera={showCamera}
-            />
-          )}
+          <AnimatePresence>
+            {showCamera && (
+              <Fade
+                isVisible={showCamera}
+                key="camera-wrapper"
+                className="camera-overlay"
+              >
+                <Camera />
+              </Fade>
+            )}
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {showStartButton && (
+              <Fade
+                isVisible={showStartButton}
+                key="start-button-wrapper"
+                className="start-camera"
+              >
+                <StartButton
+                  onClick={() => {
+                    setShowStartButton(false);
+                    setShowCamera(true);
+                  }}
+                />
+              </Fade>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </>

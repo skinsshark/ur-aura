@@ -10,25 +10,6 @@
   cursor: default;
 }
 
-@media only screen and (max-width: 598px) {
-  .text-sidebar {
-    padding: 30px 6vw;
-    border-right: none;
-    border-bottom: 1px solid #fff;
-    position: absolute;
-    z-index: 99;
-    top: 0;
-    left: 0;
-    right: 0;
-    /* bottom: 0; */
-  }
-
-  .start-camera.start-camera {
-    width: 100%;
-    padding: 16vh 6vw 0;
-  }
-}
-
 header {
   display: flex;
   flex-direction: column;
@@ -63,7 +44,7 @@ header {
   color: #fff;
 }
 
-.start-camera .start-camera-button button {
+.start-camera button.start-camera-button {
   padding: 60px;
   width: 220px;
   height: 220px;
@@ -77,18 +58,26 @@ header {
 
 @media only screen and (max-width: 598px) {
   .text-sidebar {
+    padding: 30px 6vw;
     border: none;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
-  .start-camera {
-    height: 100vh;
+  .start-camera.start-camera {
+    width: 100%;
+    padding: 0 6vw;
+    padding-bottom: 20px;
   }
 
   .start-camera svg {
     width: 100%;
   }
 
-  .start-camera .start-camera-button button {
+  .start-camera button.start-camera-button {
     padding: 40%;
   }
 }
@@ -102,10 +91,6 @@ header {
   animation-fill-mode: forwards;
   overflow: hidden;
   position: relative;
-}
-
-.camera-overlay.fade-in {
-  opacity: 0;
 }
 
 @-webkit-keyframes spin /* Safari and Chrome */ {

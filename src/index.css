@@ -155,8 +155,8 @@ button {
   }
 
   body {
-    overflow: scroll;
-    max-height: 100svh;
+    overflow: hidden;
+    height: 100dvh;
     display: flex;
   }
 
@@ -167,7 +167,7 @@ button {
   .page-wrapper {
     display: flex;
     flex-direction: column;
-    height: auto;
+    height: 100dvh;
   }
 
   .lil-border {

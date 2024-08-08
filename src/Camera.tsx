@@ -11,10 +11,12 @@ import { AnimatePresence } from 'framer-motion';
 import Fade from './Fade';
 import CapturedImage from './CapturedImage';
 
-function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
+function Camera() {
   const [deviceId, setDeviceId] = useState<string>('');
   const { height, width } = useWindowSize();
   const videoRef = useRef(null);
+
+  console.log({ height, width });
 
   const [isCapturingPhoto, setIsCapturingPhoto] = useState<boolean>(false);
   const [webcamImage, setWebcamImage] = useState<string | null>(null);
@@ -179,10 +181,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
   }, []);
 
   return (
-    <div
-      className={`camera-wrapper ${fadeInVideo ? 'fade-in' : ''}`}
-      style={{ animationDuration: `4000ms`, animationDelay: `500ms` }}
-    >
+    <>
       {webcamImage ? (
         <div
           style={{
@@ -250,7 +249,7 @@ function Camera({ fadeInVideo }: { fadeInVideo: boolean }) {
           </Fade>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 }
 
