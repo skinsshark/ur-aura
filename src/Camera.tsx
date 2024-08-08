@@ -10,13 +10,14 @@ import ExportControlsWrapper from './ExportControlsWrapper';
 import { AnimatePresence } from 'framer-motion';
 import Fade from './Fade';
 import CapturedImage from './CapturedImage';
+import useMediaQuery from './useMediaQuery';
 
 function Camera() {
   const [deviceId, setDeviceId] = useState<string>('');
   const { height, width } = useWindowSize();
   const videoRef = useRef(null);
 
-  console.log({ height, width });
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const [isCapturingPhoto, setIsCapturingPhoto] = useState<boolean>(false);
   const [webcamImage, setWebcamImage] = useState<string | null>(null);
@@ -59,7 +60,7 @@ function Camera() {
       const toPngOptions = {
         cacheBust: false,
         quality: 1,
-        width,
+        width: isMobile ? width : height * 0.75,
         height,
       };
 
@@ -185,7 +186,7 @@ function Camera() {
       {webcamImage ? (
         <div
           style={{
-            width,
+            width: isMobile ? width : height * 0.75,
             height,
             position: 'relative',
           }}
@@ -195,7 +196,7 @@ function Camera() {
       ) : (
         <div
           style={{
-            width,
+            width: isMobile ? width : height * 0.75,
             height,
             position: 'relative',
           }}
@@ -216,7 +217,7 @@ function Camera() {
                 }}
                 screenshotFormat="image/jpeg"
                 style={{
-                  width,
+                  width: isMobile ? width : height * 0.75,
                   height,
                   position: 'absolute',
                 }}

@@ -6,6 +6,7 @@ import LoadingScreen from './LoadingScreen';
 import StartButton from './StartButton';
 import { AnimatePresence } from 'framer-motion';
 import Fade from './Fade';
+import useMediaQuery from './useMediaQuery';
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -13,8 +14,7 @@ function App() {
   const [showStartButton, setShowStartButton] = useState<boolean>(true);
 
   const pageBorderRef = useRef<HTMLDivElement>(null);
-
-  console.log({ showStartButton });
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   // animation timeline:
   // 0s: spinning text fades in
@@ -54,20 +54,30 @@ function App() {
             <h1>UR-@URA</h1>
             <p>your energy, colorized</p>
           </header>
-          <AnimatePresence>
-            {showStartButton && (
-              <Fade isVisible={showStartButton} key="text-description">
-                <footer>
-                  <p>
-                    the electromagnetic field around you is your aura, captured
-                    in colors to illustrate your present, past, and future
-                    states. visit me IRL to purchase your aura photo and
-                    companion guidebook
-                  </p>
-                </footer>
-              </Fade>
-            )}
-          </AnimatePresence>
+          {isMobile ? (
+            <AnimatePresence>
+              {showStartButton && (
+                <Fade isVisible={showStartButton} key="text-description">
+                  <footer>
+                    <p>
+                      the electromagnetic field around you is your aura,
+                      captured in colors to illustrate your present, past, and
+                      future states. visit me IRL to purchase your aura photo
+                      and companion guidebook
+                    </p>
+                  </footer>
+                </Fade>
+              )}
+            </AnimatePresence>
+          ) : (
+            <footer>
+              <p>
+                the electromagnetic field around you is your aura, captured in
+                colors to illustrate your present, past, and future states.
+                visit me IRL to purchase your aura photo and companion guidebook
+              </p>
+            </footer>
+          )}
         </div>
 
         <div className="camera-wrapper">
