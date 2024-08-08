@@ -25,8 +25,7 @@
 
   .start-camera.start-camera {
     width: 100%;
-    padding: 0;
-    padding-right: 0;
+    padding: 16vh 6vw 0;
   }
 }
 
