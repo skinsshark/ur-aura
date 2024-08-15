@@ -8,6 +8,10 @@ import { AnimatePresence } from 'framer-motion';
 import Fade from './Fade';
 import useMediaQuery from './useMediaQuery';
 
+const DESCRIPTION_TEXT = `
+  the electromagnetic field around you is your aura, captured in colors to illustrate your present, past, and future states. visit me IRL to purchase your aura photo and companion guidebook
+`;
+
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showCamera, setShowCamera] = useState<boolean>(false);
@@ -59,23 +63,14 @@ function App() {
               {showStartButton && (
                 <Fade isVisible={showStartButton} key="text-description">
                   <footer>
-                    <p>
-                      the electromagnetic field around you is your aura,
-                      captured in colors to illustrate your present, past, and
-                      future states. visit me IRL to purchase your aura photo
-                      and companion guidebook
-                    </p>
+                    <p>{DESCRIPTION_TEXT}</p>
                   </footer>
                 </Fade>
               )}
             </AnimatePresence>
           ) : (
             <footer>
-              <p>
-                the electromagnetic field around you is your aura, captured in
-                colors to illustrate your present, past, and future states.
-                visit me IRL to purchase your aura photo and companion guidebook
-              </p>
+              <p>{DESCRIPTION_TEXT}</p>
             </footer>
           )}
         </div>
