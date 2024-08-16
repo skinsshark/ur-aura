@@ -143,6 +143,9 @@ function Camera() {
         const link = document.createElement('a');
         link.href = downloadImageUrl;
         link.download = `${date.toISOString()}.png`;
+        link.target = '_self';
+        link.type = 'image/png';
+
         link.click();
         setTimeout(() => {
           hiddenPolaroid.remove();
