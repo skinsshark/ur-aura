@@ -173,6 +173,10 @@ button {
   .lil-border {
     display: none;
   }
+
+  button {
+    font-size: 2rem;
+  }
 }
 
 @font-face {

@@ -79,7 +79,8 @@ function Camera() {
         hiddenPolaroid.style.flexDirection = 'column';
         hiddenPolaroid.style.alignItems = 'center';
         hiddenPolaroid.style.position = 'absolute';
-        hiddenPolaroid.style.transform = 'translateZ(-99999px)';
+        hiddenPolaroid.style.transform =
+          'translateX (-99999px) translateZ(-99999px)';
         hiddenPolaroid.style.zIndex = '-999999';
 
         const imgElement = document.createElement('img');
