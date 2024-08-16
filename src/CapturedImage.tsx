@@ -89,17 +89,17 @@ const CapturedImage = ({
 
       <div id="captured-webcam-photo">
         {/* for debugging */}
-        {/* {facePosition && (
-        <div
-          className="bounding-box"
-          style={{
-            top: `${facePosition.yCenter}%`,
-            left: `${facePosition.xCenter}%`,
-            width: `${facePosition.width}%`,
-            height: `${facePosition.height}%`,
-          }}
-        />
-      )} */}
+        {facePosition && (
+          <div
+            className="bounding-box"
+            style={{
+              top: `${facePosition.yCenter}%`,
+              left: `${facePosition.xCenter}%`,
+              width: `${facePosition.width}%`,
+              height: `${facePosition.height}%`,
+            }}
+          />
+        )}
         <img
           ref={imgRef} // this is causing scary error
           crossOrigin="anonymous"

@@ -11,7 +11,7 @@ const ExportControlsWrapper = ({
     <div className="button-wrapper export-controls-wrapper">
       <div className="export-controls">
         <div className="control-wrapper">
-          <button disabled>print photo (for event use only)</button>
+          <button disabled>add to gallery (coming soon)</button>
           <div className="button-icon">
             <svg
               viewBox="0 0 262 262"
