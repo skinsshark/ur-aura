@@ -22,7 +22,7 @@ header {
   transition-property: opacity;
   transition-timing-function: ease-in-out;
   padding-right: var(--window-padding);
-  position: relative;
+  position: absolute;
   overflow: hidden;
 }
 
@@ -71,8 +71,8 @@ header {
     width: 100%;
     padding: 0 6vw;
     padding-bottom: 20px;
-    position: absolute;
     left: 0;
+    right: 0;
   }
 
   .start-camera svg {
