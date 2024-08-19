@@ -1,5 +1,7 @@
 import { forwardRef, useEffect } from 'react';
 import { FacePositionType } from './CapturedImage';
+import { isMobile, isSafari } from 'react-device-detect';
+import classNames from 'classnames';
 
 type AuraProps = {
   svgWidth: number;
@@ -39,8 +41,15 @@ const Aura = forwardRef<SVGSVGElement, AuraProps>(
     }, [facePosition, height, ref, width, top, left]);
     const PADDING = 500; // to pad for filter effect
 
+    const className = classNames({
+      'aura-mobile': isMobile,
+      'aura-safari': isSafari,
+      'aura-safari-web': isSafari && !isMobile,
+    });
+
     return (
       <svg
+        className={className}
         ref={ref}
         viewBox={`-${PADDING} -${PADDING} ${svgWidth + PADDING + PADDING} ${
           svgHeight + PADDING + PADDING
