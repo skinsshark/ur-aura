@@ -18,7 +18,7 @@ function App() {
   const [showStartButton, setShowStartButton] = useState<boolean>(true);
 
   const pageBorderRef = useRef<HTMLDivElement>(null);
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobileSizeViewport = useMediaQuery('(max-width: 768px)');
 
   // animation timeline:
   // 0s: spinning text fades in
@@ -58,7 +58,7 @@ function App() {
             <h1>UR-@URA</h1>
             <p>your energy, colorized</p>
           </header>
-          {isMobile ? (
+          {isMobileSizeViewport ? (
             <AnimatePresence>
               {showStartButton && (
                 <Fade isVisible={showStartButton} key="text-description">

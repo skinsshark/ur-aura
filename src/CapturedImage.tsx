@@ -5,6 +5,7 @@ import FaceDetection from '@mediapipe/face_detection';
 import ScreenFlash from './ScreenFlash';
 import { AnimatePresence } from 'framer-motion';
 import Fade from './Fade';
+import { isMobile } from 'react-device-detect';
 
 export type FacePositionType = {
   width: number;
@@ -38,9 +39,9 @@ const CapturedImage = ({
 
   // bounding box is being calculated against 100%/100% width height
   // need to scale with origin at center
-  const scaleRelativeToCenter = (value: number) => {
-    const distanceFromCenter = value - 50;
-    const scaledDistance = distanceFromCenter * 1.75; // scaling factor same as width adjustment
+  const scaleRelativeToCenter = (originalXCenter: number, scale: number) => {
+    const distanceFromCenter = originalXCenter - 50;
+    const scaledDistance = distanceFromCenter * scale; // scaling factor same as width adjustment
     return 50 + scaledDistance;
   };
 
@@ -48,11 +49,13 @@ const CapturedImage = ({
     if (!boundingBox[0]) return;
 
     if (boundingBox[0].width > 0.15) {
+      const adjustedWidthScale = isMobile ? 1 : 1.75;
       const adjustedXCenter = scaleRelativeToCenter(
-        boundingBox[0].xCenter * 100
+        boundingBox[0].xCenter * 100,
+        adjustedWidthScale
       );
       setFacePosition({
-        width: boundingBox[0].width * 1.75 * 100,
+        width: boundingBox[0].width * adjustedWidthScale * 100,
         height: boundingBox[0].height * 100,
         xCenter: adjustedXCenter,
         yCenter: boundingBox[0].yCenter * 100,

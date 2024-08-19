@@ -1,7 +1,7 @@
 import Webcam from 'react-webcam';
 import { useState, useEffect, useRef } from 'react';
 
-import { toBlob, toPng } from 'html-to-image';
+import { toBlob } from 'html-to-image';
 
 import './Camera.css';
 import ShutterButtonWrapper from './ShutterButtonWrapper';
@@ -10,14 +10,12 @@ import ExportControlsWrapper from './ExportControlsWrapper';
 import { AnimatePresence } from 'framer-motion';
 import Fade from './Fade';
 import CapturedImage from './CapturedImage';
-import useMediaQuery from './useMediaQuery';
+import { isMobile } from 'react-device-detect';
 
 function Camera() {
   const [deviceId, setDeviceId] = useState<string>('');
   const { height, width } = useWindowSize();
   const videoRef = useRef(null);
-
-  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const [isCapturingPhoto, setIsCapturingPhoto] = useState<boolean>(false);
   const [webcamImage, setWebcamImage] = useState<string | null>(null);
@@ -139,7 +137,7 @@ function Camera() {
           const date = new Date().toISOString();
 
           // check if the web share api is supported
-          if (navigator.share) {
+          if (navigator.share && isMobile) {
             const file = new File([downloadImageBlob], `${date}.png`, {
               type: downloadImageBlob.type,
             });
