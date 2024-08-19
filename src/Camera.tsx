@@ -1,7 +1,7 @@
 import Webcam from 'react-webcam';
 import { useState, useEffect, useRef } from 'react';
 
-import { toPng } from 'html-to-image';
+import { toBlob, toPng } from 'html-to-image';
 
 import './Camera.css';
 import ShutterButtonWrapper from './ShutterButtonWrapper';
@@ -57,7 +57,7 @@ function Camera() {
       const photoEl = document.getElementById(
         'captured-webcam-photo'
       ) as HTMLElement;
-      const toPngOptions = {
+      const toBlobOptions = {
         cacheBust: false,
         quality: 1,
         width: isMobile ? width : height * 0.75,
@@ -65,29 +65,26 @@ function Camera() {
       };
 
       // need to run this 3x times for it to work on safari apple whyyyyy
-      await toPng(photoEl, toPngOptions);
-      await toPng(photoEl, toPngOptions);
-      const dataUrl = await toPng(photoEl, toPngOptions);
+      await toBlob(photoEl, toBlobOptions);
+      await toBlob(photoEl, toBlobOptions);
+      const auraImageBlob = await toBlob(photoEl, toBlobOptions);
 
-      // this is crazy bc css classes were loaded but not applied
-      if (dataUrl) {
+      if (auraImageBlob) {
         const hiddenPolaroid = document.createElement('div');
         hiddenPolaroid.className = 'polaroid';
         hiddenPolaroid.style.backgroundColor = '#eee';
         hiddenPolaroid.style.display = 'flex';
-        hiddenPolaroid.style.gap = '20px';
+        hiddenPolaroid.style.gap = '8px';
         hiddenPolaroid.style.flexDirection = 'column';
         hiddenPolaroid.style.alignItems = 'center';
         hiddenPolaroid.style.position = 'absolute';
-        hiddenPolaroid.style.transform =
-          'translateX (-99999px) translateZ(-99999px)';
-        hiddenPolaroid.style.zIndex = '-999999';
 
         const imgElement = document.createElement('img');
-        imgElement.src = dataUrl;
-        imgElement.style.marginTop = '200px';
-        imgElement.width = 925;
-        imgElement.height = 1234;
+        const auraImageUrl = URL.createObjectURL(auraImageBlob);
+        imgElement.src = auraImageUrl;
+        imgElement.style.marginTop = '80px';
+        imgElement.width = 370;
+        imgElement.height = 493.6;
 
         hiddenPolaroid.appendChild(imgElement);
         const polaroidText = document.createElement('div');
@@ -95,11 +92,11 @@ function Camera() {
         polaroidText.style.display = 'flex';
         polaroidText.style.flexDirection = 'column';
         polaroidText.style.alignItems = 'center';
-        polaroidText.style.gap = '8px';
+        polaroidText.style.gap = '4px';
 
         const polaroidTitle = document.createElement('div');
         polaroidTitle.innerText = 'UR-@URA';
-        polaroidTitle.style.fontSize = '128px';
+        polaroidTitle.style.fontSize = '52px';
 
         // const polaroidSubtitle = document.createElement('div');
         // polaroidSubtitle.innerText = 'your energy, colorized';
@@ -107,11 +104,11 @@ function Camera() {
 
         const polaroidLink = document.createElement('div');
         polaroidLink.innerText = 'ur-aura.sharonzheng.com';
-        polaroidLink.style.fontSize = '48px';
+        polaroidLink.style.fontSize = '20px';
 
         const polaroidTag = document.createElement('div');
-        polaroidTag.innerText = '(tag @sharon in your stories)';
-        polaroidTag.style.fontSize = '48px';
+        polaroidTag.innerText = '(tag @sharon on instagram)';
+        polaroidTag.style.fontSize = '20px';
 
         polaroidText.appendChild(polaroidTitle);
         // polaroidText.appendChild(polaroidSubtitle);
@@ -124,32 +121,45 @@ function Camera() {
         const polaroidToPngOptions = {
           cacheBust: false,
           quality: 1,
-          width: 1080,
-          height: 1920,
+          width: 432,
+          height: 768,
         };
 
         // need to run this 3x times for it to work on safari apple whyyyyy
-        await toPng(hiddenPolaroid, polaroidToPngOptions);
-        await toPng(hiddenPolaroid, polaroidToPngOptions);
-        const downloadImageUrl = await toPng(
+        await toBlob(hiddenPolaroid, polaroidToPngOptions);
+        await toBlob(hiddenPolaroid, polaroidToPngOptions);
+
+        const downloadImageBlob = await toBlob(
           hiddenPolaroid,
           polaroidToPngOptions
         );
+        if (downloadImageBlob !== null) {
+          document.body.appendChild(hiddenPolaroid);
 
-        document.body.appendChild(hiddenPolaroid);
+          const date = new Date().toISOString();
 
-        const date = new Date();
-        // tmp download image
-        const link = document.createElement('a');
-        link.href = downloadImageUrl;
-        link.download = `${date.toISOString()}.png`;
-        link.target = '_self';
-        link.type = 'image/png';
-
-        link.click();
-        setTimeout(() => {
-          hiddenPolaroid.remove();
-        }, 1000);
+          // check if the web share api is supported
+          if (navigator.share) {
+            const file = new File([downloadImageBlob], `${date}.png`, {
+              type: downloadImageBlob.type,
+            });
+            await navigator.share({
+              title: date,
+              text: 'your energy, colorized @ ur-aura.sharonzheng.com',
+              files: [file],
+            });
+          } else {
+            // tmp download image
+            const link = document.createElement('a');
+            const downloadImageUrl = URL.createObjectURL(downloadImageBlob);
+            link.href = downloadImageUrl;
+            link.download = `${date}.png`;
+            link.click();
+          }
+          setTimeout(() => {
+            hiddenPolaroid.remove();
+          }, 1000);
+        }
       }
     } catch (e) {
       console.log(e);
