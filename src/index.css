@@ -23,6 +23,7 @@ body {
   padding: 0;
   background-color: #000;
   overflow: hidden;
+  border: 1px solid #fff;
 }
 
 .page-wrapper {
