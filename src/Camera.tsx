@@ -22,28 +22,41 @@ function Camera() {
   const [auraBlobForGallery, setAuraBlobForGallery] = useState<Blob | null>(
     null
   );
+  const [galleryUploadState, setGallerySuccess] = useState<
+    'ready' | 'uploading' | 'success' | 'error'
+  >('ready');
   const [isAuraReady, setIsAuraReady] = useState<boolean>(false);
 
   const onRetakePhoto = () => {
     setWebcamImage(null);
     setIsAuraReady(false);
     setIsCapturingPhoto(false);
+    setGallerySuccess('ready');
   };
 
   const onAddToGallery = async () => {
     if (auraBlobForGallery !== null) {
       const form = new FormData();
-      const date = new Date().toISOString();
+      // iso string without milliseconds (the decimal part)
+      const date = new Date().toISOString().slice(0, -5);
       form.append(
         'file',
         new File([auraBlobForGallery as Blob], `${date}.png`, {
           type: auraBlobForGallery.type,
         })
       );
-      await fetch('https://oura-gallery.vercel.app/api/upload', {
-        method: 'POST',
-        body: form,
-      });
+      try {
+        setGallerySuccess('uploading');
+        await fetch('https://oura-gallery.vercel.app/api/upload', {
+          method: 'POST',
+          body: form,
+        });
+      } catch (e) {
+        setGallerySuccess('error');
+        console.error(e);
+      }
+
+      setGallerySuccess('success');
     }
   };
 
@@ -289,6 +302,7 @@ function Camera() {
               onAddToGallery={onAddToGallery}
               onRetakePhoto={onRetakePhoto}
               onDownloadImage={onDownloadImage}
+              galleryUploadState={galleryUploadState}
             />
           </Fade>
         )}

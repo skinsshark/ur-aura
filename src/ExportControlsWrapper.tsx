@@ -1,19 +1,37 @@
+import { isMobile } from 'react-device-detect';
 import './ExportControlsWrapper.css';
 
 const ExportControlsWrapper = ({
+  galleryUploadState,
   onDownloadImage,
   onRetakePhoto,
   onAddToGallery,
 }: {
+  galleryUploadState: 'ready' | 'uploading' | 'success' | 'error';
   onDownloadImage: () => void;
   onRetakePhoto: () => void;
   onAddToGallery: () => void;
 }) => {
+  const galleryUploadStatusText = {
+    ready: 'add to gallery',
+    uploading: 'adding...',
+    success: 'success! check back soon<3',
+    error: 'oops, try again?',
+  }[galleryUploadState];
+
   return (
     <div className="button-wrapper export-controls-wrapper">
       <div className="export-controls">
         <div className="control-wrapper">
-          <button onClick={onAddToGallery}>add to gallery</button>
+          <button
+            onClick={onAddToGallery}
+            disabled={
+              galleryUploadState === 'success' ||
+              galleryUploadState === 'uploading'
+            }
+          >
+            {galleryUploadStatusText}
+          </button>
           <div className="button-icon">
             <svg
               viewBox="0 0 262 262"
@@ -29,7 +47,9 @@ const ExportControlsWrapper = ({
           </div>
         </div>
         <div className="control-wrapper">
-          <button onClick={onDownloadImage}>save image to device</button>
+          <button onClick={onDownloadImage}>
+            {isMobile ? 'share aura to ig story' : 'save image to device'}
+          </button>
           <div className="button-icon">
             <svg
               viewBox="0 0 167 169"
