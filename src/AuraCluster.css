@@ -1,5 +1,4 @@
 .aura-cluster {
-  border: 1px solid red !important;
   opacity: 0;
   animation: fade-in-aura ease-in-out 3s;
   animation-iteration-count: 1;
@@ -20,39 +19,26 @@
   position: absolute;
   transition: 0.1s ease-in all;
   z-index: 0;
-  filter: blur(60px) url(#wavy);
-  -webkit-filter: blur(60px) url(#wavy);
+  filter: url(#wavy) blur(60px);
+  -webkit-filter: url(#wavy) blur(60px);
+  transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -moz-transform: translate3d(0, 0, 0);
 }
 
 .aura-cluster svg.aura-mobile {
-  filter: blur(20px) url(#wavy);
-  -webkit-filter: blur(20px) url(#wavy);
+  filter: url(#wavy) blur(30px);
+  -webkit-filter: url(#wavy) blur(30px);
   animation: fade-in-aura-mobile ease-in-out 3s;
   -webkit-animation: fade-in-aura-mobile ease-in-out 3s;
   -moz-animation: fade-in-aura-mobile ease-in-out 3s;
 }
 
-.aura-cluster svg.aura-mobile,
-.aura-cluster svg.aura-safari {
-  transform: translate3d(-20px, -20px, 0);
-}
-
-.aura-cluster svg.aura-safari-web {
-  transform: translate3d(-60px, -60px, 0);
-}
-
 @keyframes fade-in-aura {
   100% {
     opacity: 0.9;
-  }
-}
-
-@keyframes fade-in-aura-mobile {
-  100% {
-    opacity: 0.6;
   }
 }

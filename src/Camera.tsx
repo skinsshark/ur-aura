@@ -67,7 +67,7 @@ function Camera() {
       await toBlob(photoEl, toBlobOptions);
       const auraImageBlob = await toBlob(photoEl, toBlobOptions);
 
-      if (auraImageBlob) {
+      if (auraImageBlob !== null) {
         const hiddenPolaroid = document.createElement('div');
         hiddenPolaroid.className = 'polaroid';
         hiddenPolaroid.style.backgroundColor = '#eee';
@@ -80,7 +80,7 @@ function Camera() {
         const imgElement = document.createElement('img');
         const auraImageUrl = URL.createObjectURL(auraImageBlob);
         imgElement.src = auraImageUrl;
-        imgElement.style.marginTop = '80px';
+        imgElement.style.marginTop = '100px';
         imgElement.width = 370;
         imgElement.height = 493.6;
 
