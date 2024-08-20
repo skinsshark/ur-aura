@@ -3,15 +3,17 @@ import './ExportControlsWrapper.css';
 const ExportControlsWrapper = ({
   onDownloadImage,
   onRetakePhoto,
+  onAddToGallery,
 }: {
   onDownloadImage: () => void;
   onRetakePhoto: () => void;
+  onAddToGallery: () => void;
 }) => {
   return (
     <div className="button-wrapper export-controls-wrapper">
       <div className="export-controls">
         <div className="control-wrapper">
-          <button disabled>add to gallery (coming soon)</button>
+          <button onClick={onAddToGallery}>add to gallery</button>
           <div className="button-icon">
             <svg
               viewBox="0 0 262 262"
