@@ -19,12 +19,29 @@ function Camera() {
 
   const [isCapturingPhoto, setIsCapturingPhoto] = useState<boolean>(false);
   const [webcamImage, setWebcamImage] = useState<string | null>(null);
+  const [auraBlobForGallery, setAuraBlobForGallery] = useState<Blob | null>(
+    null
+  );
   const [isAuraReady, setIsAuraReady] = useState<boolean>(false);
 
   const onRetakePhoto = () => {
     setWebcamImage(null);
     setIsAuraReady(false);
     setIsCapturingPhoto(false);
+  };
+
+  const onAddToGallery = async () => {
+    console.log('add click');
+    fetch('https://oura-gallery.vercel.app/api/upload', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        file: auraBlobForGallery,
+      }),
+    });
   };
 
   const onCaptureImage = () => {
@@ -68,6 +85,7 @@ function Camera() {
       const auraImageBlob = await toBlob(photoEl, toBlobOptions);
 
       if (auraImageBlob !== null) {
+        setAuraBlobForGallery(auraImageBlob);
         const hiddenPolaroid = document.createElement('div');
         hiddenPolaroid.className = 'polaroid';
         hiddenPolaroid.style.backgroundColor = '#eee';
@@ -81,6 +99,7 @@ function Camera() {
         const auraImageUrl = URL.createObjectURL(auraImageBlob);
         imgElement.src = auraImageUrl;
         imgElement.style.marginTop = '100px';
+        // keep captured photo aspect ratio
         imgElement.width = 370;
         imgElement.height = 493.6;
 
@@ -256,6 +275,7 @@ function Camera() {
         {isAuraReady && (
           <Fade isVisible={isAuraReady} key="exports-controls-wrapper">
             <ExportControlsWrapper
+              onAddToGallery={onAddToGallery}
               onRetakePhoto={onRetakePhoto}
               onDownloadImage={onDownloadImage}
             />
