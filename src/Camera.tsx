@@ -31,17 +31,20 @@ function Camera() {
   };
 
   const onAddToGallery = async () => {
-    console.log('add click');
-    fetch('https://oura-gallery.vercel.app/api/upload', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        file: auraBlobForGallery,
-      }),
-    });
+    if (auraBlobForGallery !== null) {
+      const form = new FormData();
+      const date = new Date().toISOString();
+      form.append(
+        'file',
+        new File([auraBlobForGallery as Blob], `${date}.png`, {
+          type: auraBlobForGallery.type,
+        })
+      );
+      await fetch('https://oura-gallery.vercel.app/api/upload', {
+        method: 'POST',
+        body: form,
+      });
+    }
   };
 
   const onCaptureImage = () => {
@@ -67,8 +70,8 @@ function Camera() {
   //   });
   // }, []);
 
-  const onDownloadImage = async () => {
-    try {
+  useEffect(() => {
+    const fetchAuraImage = async () => {
       const photoEl = document.getElementById(
         'captured-webcam-photo'
       ) as HTMLElement;
@@ -83,9 +86,17 @@ function Camera() {
       await toBlob(photoEl, toBlobOptions);
       await toBlob(photoEl, toBlobOptions);
       const auraImageBlob = await toBlob(photoEl, toBlobOptions);
+      setAuraBlobForGallery(auraImageBlob);
+    };
 
-      if (auraImageBlob !== null) {
-        setAuraBlobForGallery(auraImageBlob);
+    if (isAuraReady) {
+      fetchAuraImage();
+    }
+  }, [height, isAuraReady, width]);
+
+  const onDownloadImage = async () => {
+    try {
+      if (auraBlobForGallery !== null) {
         const hiddenPolaroid = document.createElement('div');
         hiddenPolaroid.className = 'polaroid';
         hiddenPolaroid.style.backgroundColor = '#eee';
@@ -96,7 +107,7 @@ function Camera() {
         hiddenPolaroid.style.position = 'absolute';
 
         const imgElement = document.createElement('img');
-        const auraImageUrl = URL.createObjectURL(auraImageBlob);
+        const auraImageUrl = URL.createObjectURL(auraBlobForGallery);
         imgElement.src = auraImageUrl;
         imgElement.style.marginTop = '100px';
         // keep captured photo aspect ratio
