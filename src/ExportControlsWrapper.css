@@ -25,6 +25,7 @@
   width: calc(100vw - 75vh);
   flex-direction: column;
   padding-left: var(--window-padding);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .export-controls {
@@ -75,6 +76,10 @@
 }
 
 @media only screen and (max-width: 598px) {
+  .export-controls .control-wrapper {
+    padding: 0;
+  }
+
   .control-wrapper .button-icon {
     display: none;
   }

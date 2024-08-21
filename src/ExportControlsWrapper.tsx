@@ -13,7 +13,7 @@ const ExportControlsWrapper = ({
   onAddToGallery: () => void;
 }) => {
   const galleryUploadStatusText = {
-    ready: 'add to gallery',
+    ready: 'add to the virtual gallery',
     uploading: 'adding...',
     success: 'success! check back soon<3',
     error: 'oops, try again?',
@@ -48,7 +48,7 @@ const ExportControlsWrapper = ({
         </div>
         <div className="control-wrapper">
           <button onClick={onDownloadImage}>
-            {isMobile ? 'share aura to ig story' : 'save image to device'}
+            {isMobile ? 'share aura to your ig story' : 'save image to device'}
           </button>
           <div className="button-icon">
             <svg
