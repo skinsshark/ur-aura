@@ -1,5 +1,6 @@
 import { isMobile } from 'react-device-detect';
 import './ExportControlsWrapper.css';
+import { trackCustomEvent } from './analytics';
 
 const ExportControlsWrapper = ({
   galleryUploadState,
@@ -35,7 +36,10 @@ const ExportControlsWrapper = ({
       <div className="export-controls">
         <div className="control-wrapper">
           <button
-            onClick={onAddToGallery}
+            onClick={() => {
+              onAddToGallery();
+              trackCustomEvent('add-to-gallery');
+            }}
             disabled={
               galleryUploadState === 'success' ||
               galleryUploadState === 'uploading'
@@ -58,7 +62,12 @@ const ExportControlsWrapper = ({
           </div>
         </div>
         <div className="control-wrapper">
-          <button onClick={onDownloadImage}>
+          <button
+            onClick={() => {
+              onDownloadImage();
+              trackCustomEvent('save-image');
+            }}
+          >
             {isMobile ? 'share aura to your ig story' : 'save image to device'}
           </button>
           <div className="button-icon">
@@ -77,7 +86,10 @@ const ExportControlsWrapper = ({
         </div>
       </div>
       <button
-        onClick={onRetakePhoto}
+        onClick={() => {
+          onRetakePhoto();
+          trackCustomEvent('retake-photo');
+        }}
         className="thin-container retake-photo-button"
       >
         retake photo
