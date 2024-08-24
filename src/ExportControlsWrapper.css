@@ -70,9 +70,17 @@
   opacity: 0.5;
 }
 
-.export-controls-wrapper .retake-photo-button {
-  border-top: 1px solid #fff;
+.export-controls-wrapper .thin-container {
   padding: 0.5rem;
+  text-align: center;
+}
+
+.retake-photo-button {
+  border-top: 1px solid #fff;
+}
+
+.gallery-note {
+  border-bottom: 1px solid #fff;
 }
 
 @media only screen and (max-width: 598px) {
@@ -85,7 +93,7 @@
   }
 
   .control-wrapper button,
-  .export-controls-wrapper .retake-photo-button {
+  .export-controls-wrapper .thin-container {
     padding: 1.325rem;
   }
 }

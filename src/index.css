@@ -54,7 +54,8 @@ p,
 a,
 a:focus,
 a:active,
-button {
+button,
+.thin-container {
   color: #fff;
   margin: 0;
   font-weight: normal;
@@ -68,7 +69,7 @@ a:active {
 }
 
 a:hover {
-  font-weight: bold;
+  text-transform: uppercase;
 }
 
 h1 {
@@ -115,7 +116,8 @@ button:not([disabled]):hover {
   text-transform: uppercase;
 }
 
-button {
+button,
+.thin-container {
   font-size: 1.6rem;
 }
 
@@ -125,7 +127,7 @@ button {
 
 /* ~mobile~ */
 /* --tablet-breakpoint */
-@media only screen and (max-width: 1124px) and (min-width: 599px) {
+@media only screen and (max-width: 1346px) and (min-width: 599px) {
   .page-wrapper {
     display: none;
     /* flex-direction: column; */
@@ -174,7 +176,8 @@ button {
     display: none;
   }
 
-  button {
+  button,
+  .thin-container {
     font-size: 2rem;
   }
 }

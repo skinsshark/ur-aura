@@ -21,6 +21,17 @@ const ExportControlsWrapper = ({
 
   return (
     <div className="button-wrapper export-controls-wrapper">
+      <div className="thin-container gallery-note">
+        (the public gallery will open soon at{' '}
+        <a
+          href="https://our-aura.sharonzheng.com"
+          target="_blank"
+          rel="noreferrer"
+        >
+          our&#8209;aura.sharonzheng.com
+        </a>
+        )
+      </div>
       <div className="export-controls">
         <div className="control-wrapper">
           <button
@@ -65,7 +76,10 @@ const ExportControlsWrapper = ({
           </div>
         </div>
       </div>
-      <button onClick={onRetakePhoto} className="retake-photo-button">
+      <button
+        onClick={onRetakePhoto}
+        className="thin-container retake-photo-button"
+      >
         retake photo
       </button>
     </div>
