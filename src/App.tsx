@@ -7,12 +7,15 @@ import StartButton from './StartButton';
 import { AnimatePresence } from 'framer-motion';
 import Fade from './Fade';
 import useMediaQuery from './useMediaQuery';
+import ReactGA from 'react-ga4';
 
 const DESCRIPTION_TEXT = `
   the electromagnetic field around you is your aura, captured in colors to illustrate your present, past, and future states. visit me IRL to purchase your aura photo and companion guidebook
 `;
 
 function App() {
+  ReactGA.initialize(process.env.REACT_APP_GA4_ID as string);
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showCamera, setShowCamera] = useState<boolean>(false);
   const [showStartButton, setShowStartButton] = useState<boolean>(true);
