@@ -8,6 +8,7 @@ import { AnimatePresence } from 'framer-motion';
 import Fade from './Fade';
 import useMediaQuery from './useMediaQuery';
 import ReactGA from 'react-ga4';
+import { Analytics } from '@vercel/analytics/react';
 
 const DESCRIPTION_TEXT = `
   the electromagnetic field around you is your aura, captured in colors to illustrate your present, past, and future states. visit me IRL to purchase your aura photo and companion guidebook
@@ -52,6 +53,7 @@ function App() {
 
   return (
     <>
+      <Analytics />
       <div className="lil-border" ref={pageBorderRef} />
       {isLoading && <LoadingScreen />}
       <div className="page-wrapper">
