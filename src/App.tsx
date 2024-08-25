@@ -15,6 +15,7 @@ const DESCRIPTION_TEXT = `
 `;
 
 function App() {
+  console.log("don't look", process.env.REACT_APP_GA4_ID);
   ReactGA.initialize(process.env.REACT_APP_GA4_ID as string);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
