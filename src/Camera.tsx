@@ -47,7 +47,7 @@ function Camera() {
       );
       try {
         setGallerySuccess('uploading');
-        await fetch('https://oura-gallery.vercel.app/api/upload', {
+        await fetch('https://our-aura.sharonzheng.com/api/upload', {
           method: 'POST',
           body: form,
         });
